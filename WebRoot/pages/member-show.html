@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="../css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="../js/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="../css/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="../css/style2.css" />
+
+<title>用户查看</title>
+</head>
+
+<script type="text/javascript" src="../gyscripts/jquery/jquery-1.7.1.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		//alert("8");
+		var test =decodeURI(window.location.href);
+		//alert(test);
+		var index = test.indexOf('parameter=');
+		var obj = JSON.parse(test.substr(index+10));
+		//alert(obj);
+
+		
+	//姓名
+		if(obj.role == 1){
+			document.getElementById('name').innerText = obj.doctor.name.toString();
+		}else{
+			document.getElementById('name').innerText = obj.patient.name.toString();
+		}
+	//角色
+		document.getElementById('role').innerText = (obj.role == 0 ? "患者" : "医生");
+	//性别
+			
+		if(obj.role == 1){
+			document.getElementById('sex').innerHTML = (obj.doctor.sex==1?"男":"女");
+		}else{
+			document.getElementById('sex').innerHTML = (obj.patient.sex==1?"男":"女");
+		}
+	//年龄
+		if(obj.role == 1){
+			var birthday = obj.doctor.birthday;
+			cage(birthday);
+			document.getElementById('age').innerHTML = cage(birthday);
+		}else{
+			var birthday = obj.patient.birthday;
+			cage(birthday);
+			document.getElementById('age').innerHTML = cage(birthday);
+		}
+	//个性签名
+		if(obj.role == 0){
+			document.getElementById('zy').innerHTML = obj.patient.profession;
+			document.getElementById('address').innerHTML = obj.patient.address;
+			document.getElementById('cname').innerHTML = obj.patient.cname.toString();
+			document.getElementById('crelation').innerHTML = obj.patient.crelation.toString();
+			document.getElementById('cphone').innerHTML = obj.patient.cphone.toString();
+			document.getElementById('ks').style.display ="none";
+			document.getElementById('zc').style.display ="none";
+			document.getElementById('jj').style.display ="none";
+		}else{
+			document.getElementById('gxqm').style.display ="none";
+			document.getElementById('add').style.display ="none";
+			document.getElementById('lxrxm').style.display ="none";
+			document.getElementById('gx').style.display ="none";
+			document.getElementById('dh').style.display ="none";
+			document.getElementById('dep').innerHTML = cdep(obj);
+			document.getElementById('tit').innerHTML = ctit(obj);
+			document.getElementById('desc').innerHTML = obj.doctor.description.toString();
+		}
+
+	});
+	
+	function cage(birthday)
+	{
+		birthday = birthday.replace("T"," ");
+		birthday = birthday.replace(/-/g,"/");
+		var start = new Date(birthday);
+		var end = new Date();
+		var age = Math.ceil((end-start)/(1000*3600*24*365));//向上取整
+	    //alert(JSON.stringify(age));
+		return age;	
+	}
+	
+	function cdep(obj){
+		var Depart= obj.doctor.department.toString();
+	    var dep= "";
+		switch(Depart)
+		{
+			case '0':
+				dep = "内科";
+				break;
+			case '1':
+				dep = "外科";
+				break;
+			case '2':
+				dep = "妇产科";
+				break;
+			case '3':
+				dep = "男科";
+				break;
+			case '4':
+				dep = "儿科";
+				break;
+			case '5':
+				dep = "五官科";
+				break;
+			case '6':
+				dep = "肿瘤科";
+				break;
+			case '7':
+				dep = "皮肤性病科";
+				break;
+			case '8':
+				dep = "中医科";
+				break;
+			case '9':
+				dep = "传染";
+				break;
+			case '10':
+				dep = "精神心理科";
+				break;
+			case '11':
+				dep = "整形美容科";
+				break;
+			case '12':
+				dep = "营养科";
+				break;
+			case '13':
+				dep = "生殖中心";
+				break;
+			case '14':
+				dep = "麻醉医学科";
+				break;
+			case '15':
+				dep = "医学影像科";
+				break;
+			case '16':
+				dep = "其他科室";
+				break;
+			default:
+				dep = "未知";
+		}
+		return dep;
+	}
+	
+	function ctit(obj){
+		var tt = obj.doctor.title.toString();
+		var tit;
+		switch(tt){
+			case '0':
+				tit = "医师";
+				break;
+			case '1':
+				tit = "主治医师";
+				break;
+			case '2':
+				tit = "副主任医师";
+				break;
+			case '3':
+				tit = "主任医师";
+				break;
+			default:
+				tit = "未知";
+		}
+		return tit;
+	}
+	   
+
+</script>
+
+<body>
+<div class="cl pd-20" style=" background-color:#5bacb6">
+	<img class="avatar size-XL l" src="../images/avatar-default.jpg">
+	<dl style="margin-left:80px; color:#fff">
+		<dt>
+			<span id="name" class="f-18"></span>
+			
+		</dt>
+		<dd class="pt-10 f-12" style="margin-left:0">
+		<span id="role" ></span>
+		</dd>
+	</dl>
+</div>
+<div class="pd-20">
+	<table class="table">
+		<tbody>
+			<tr>
+				<th class="text-r" width="80">性别：</th>
+				<td id="sex"></td>
+			</tr>
+			<tr>
+				<th class="text-r">年龄：</th>
+				<td id="age"></td>
+			</tr>
+			<tr id="gxqm">
+				<th class="text-r">职业:&nbsp;&nbsp;</th>
+				<td id="zy"></td>
+			</tr>
+			<tr id="add">
+				<th class="text-r">住址：</th>
+				<td id="address"></td>
+			</tr>
+			<tr id="lxrxm">
+				<th class="text-r" style="padding:0px">联系人姓名：&nbsp;&nbsp;</th>
+				<td id="cname"></td>
+			</tr>
+			<tr id="gx">
+				<th class="text-r">关系：</th>
+				<td id="crelation"></td>
+			</tr>
+			<tr id="dh">
+				<th class="text-r">电话：</th>
+				<td id="cphone"></td>
+			</tr>
+			<tr id="ks">
+				<th class="text-r">科室：</th>
+				<td id="dep"></td>
+			</tr>
+			<tr id="zc">
+				<th class="text-r">职称：</th>
+				<td id="tit"></td>
+			</tr>
+			<tr id="jj">
+				<th class="text-r">医生简介：</th>
+				<td id="desc"></td>
+			</tr>
+			
+		</tbody>
+	</table>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer.js"></script>
+<script type="text/javascript" src="../js/H-ui.min.js"></script>
+<script type="text/javascript" src="../js/H-ui.admin.js"></script> 
+<!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+</body>
+</html>

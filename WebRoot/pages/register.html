@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>注册</title>
+<!-- Meta tag Keywords -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords"
+	content="User Profile Form A Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+<script type="application/x-javascript">addEventListener("load", function() {
+		setTimeout(hideURLbar, 0);
+	}, false);
+	function hideURLbar() {
+		window.scrollTo(0, 1);
+	}
+</script>
+<!-- Meta tag Keywords -->
+<!-- css files -->
+<link href="../css/style.css" rel="stylesheet" type="text/css"
+	media="all">
+<link rel="stylesheet" href="../css/font-awesome.css">
+<!-- Font-Awesome-Icons-CSS -->
+<!-- //css files -->
+<!-- online-fonts -->
+<link href="//fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../css/bootstrapM.min.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+<!--//online-fonts -->
+
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<Script>
+	var status;
+	var statusUser = true;
+	var statusPassword = true;
+	var statusEmail = true;
+	var statusPhone = true;
+	//校验用户名
+	function checkUser() {
+		document.getElementById('bt1').disabled = true;
+		var name = document.getElementById("username");
+		var reg = /^[\u4e00-\u9fff\w]{6,}$/; //正则
+		if (name.value == null || name.value == '') {
+			document.getElementById('errusername').innerHTML = '<font style="color:red;font-size:5px;">用户名不能为空</font>';
+			statusUser = true;
+		} else {
+			document.getElementById('errusername').innerHTML = '<font style="color:red;font-size:5px;"></font>';
+			if (!(reg.test(name.value.toString()))) {
+				document.getElementById('errusername').innerHTML = '<font style="color:red;font-size:5px;">请输入6位以上用户名</font>';
+				statusUser = true;
+			} else {
+				verify('username', $("#username").val());
+				if (status == "1") {
+					document.getElementById('errusername').innerHTML = '<font style="color:red;font-size:5px;">已存在</font>';
+					statusUser = true;
+				} else {
+					statusUser = false;
+					document.getElementById('errusername').innerHTML = '<font style="font-size:16px;"><i class="fa fa-check" aria-hidden="true"></i></font>';
+					document.getElementById('bt1').disabled = statusUser || statusPassword || statusEmail || statusPhone;
+				}
+			}
+		}
+	}
+	//校验密码
+	function checkPassword() {
+		document.getElementById('bt1').disabled = true;
+		var password = document.getElementById("password");
+		var reg = /^(?![^a-zA-Z]+$)(?!D+$).{6,}$/; //正则
+		if (password.value == null || password.value == '') {
+			document.getElementById('errpassword').innerHTML = '<font style="color:red;font-size:5px;" >密码不能为空</font>';
+			statusPassword = true;
+		} else {
+			document.getElementById('errpassword').innerHTML = '<font ></font>';
+			if (!(reg.test(password.value.toString()))) {
+				document.getElementById('errpassword').innerHTML = '<font style="color:red;font-size:5px;">6位以上必须含有字母</font>';
+				statusPassword = true;
+			} else {
+				statusPassword = false;
+				document.getElementById('errpassword').innerHTML = '<font style="font-size:16px;"><i class="fa fa-check" aria-hidden="true"></i></font>';
+				document.getElementById('bt1').disabled = statusUser || statusPassword || statusEmail || statusPhone;
+			}
+		}
+	}
+	//校验邮箱
+	function checkEmail() {
+		document.getElementById('bt1').disabled = true;
+		var email = document.getElementById("email");
+		var reg = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/;
+		if (email.value == null || email.value == '') {
+			document.getElementById('erremail').innerHTML = '<font style="color:red;font-size:5px;">邮箱不能为空</font>';
+			statusEmail = true;
+		} else {
+			document.getElementById('erremail').innerHTML = '<font style="color:red"></font>';
+			if (!(reg.test(email.value.toString()))) {
+				document.getElementById('erremail').innerHTML = '<font style="color:red;font-size:5px;">请输入正确的邮箱</font>';
+				statusEmail = true;
+			} else {
+				verify('email', $("#email").val());
+				if (status == "1") {
+					document.getElementById('erremail').innerHTML = '<font style="color:red;font-size:5px;">已存在</font>';
+					statusEmail = true;
+				} else {
+					statusEmail = false;
+					document.getElementById('erremail').innerHTML = '<font style="font-size:16px;"><i class="fa fa-check" aria-hidden="true"></i></font>';
+					document.getElementById('bt1').disabled = statusUser || statusPassword || statusEmail || statusPhone;
+				}
+			}
+		}
+	}
+	//校验手机号
+	function checkPhone() {
+		document.getElementById('bt1').disabled = true;
+		var phone = document.getElementById("phone");
+		var reg = /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/;
+		if (phone.value == null || phone.value == '') {
+			document.getElementById('errphone').innerHTML = '<font style="color:red;font-size:5px;" >手机号不能为空</font>';
+			statusPhone = true;
+		} else {
+			document.getElementById('errphone').innerHTML = '<font style="color:red;font-size:5px;"></font>';
+			if (!(reg.test(phone.value.toString()))) {
+				document.getElementById('errphone').innerHTML = '<font style="color:red;font-size:5px;">请输入正确的手机号</font>';
+				statusPhone = true;
+			} else {
+				verify('phone', $("#phone").val());
+				if (status == "1") {
+					document.getElementById('errphone').innerHTML = '<font style="color:red;font-size:5px;">已存在</font>';
+					statusPhone = true;
+				} else {
+					statusPhone = false;
+					document.getElementById('errphone').innerHTML = '<font style="font-size:16px;"><i class="fa fa-check" aria-hidden="true"></i></font>';
+					document.getElementById('bt1').disabled = statusUser || statusPassword || statusEmail || statusPhone;
+				}
+			}
+		}
+	}
+
+	function verify(method, value) {
+		$.ajax({
+			url : "isRegister",
+			type : "POST",
+			data : {
+				"method" : method,
+				"parameter" : value
+			},
+			dataType : "text",
+			async : false,
+			success : function(data) {
+				status = data;
+			},
+			error : function(data) {
+				alert("失败");
+				alert('error:' + data);
+			}
+		})
+	}
+	
+
+	
+</Script>
+</head>
+
+
+<body>
+	<div class="w3-main" style="color:#000;width:500px;margin-top:30px;">
+		<div class="form-w3l" style="background:#fff; border-radius:10px">
+			<form action="user_register" id="form" name="form" method="post"
+				namespace="/pages">
+				<div
+					style="font-size:39px;color:#333;text-align:center;padding-bottom:49px;">
+					注册</div>
+				<div class="w3l-user">
+					<span><i class="fa fa-user-circle-o w3l-1"
+						aria-hidden="true"></i></span> <input type="text" name="username"
+						id="username" placeholder="请输入6位以上的用户名" required=""
+						onblur="checkUser();" style="display:inline;width:50%;" /> <span
+						id="errusername" style="display:inline;width:40%;"></span>
+					<div class="clear"></div>
+				</div>
+
+				<div class="w3l-password">
+					<span><i class="fa fa-lock w3l-2" aria-hidden="true"></i></span> <input
+						type="password" id="password" name="password"
+						placeholder="请输入6位以上的密码" required="" onblur="checkPassword();"
+						style="display:inline;width:50%;" /> <span id="errpassword"
+						style="display:inline;width:40%;"></span>
+					<div class="clear"></div>
+				</div>
+
+				<div class="w3l-email">
+					<span><i class="fa fa-envelope-o w3l-3" aria-hidden="true"></i></span>
+					<input type="email" id="email" name="email" placeholder="请输入邮箱"
+						required="" onblur="checkEmail();"
+						style="display:inline;width:50%;" /> <span id="erremail"
+						style="display:inline;width:40%;"></span>
+					<div class="clear"></div>
+				</div>
+
+				<div class="w3l-phone">
+					<span><i class="fa fa-mobile w3l-4" aria-hidden="true"></i></span>
+					<input type="text" id="phone" name="phone" placeholder="请输入手机号"
+						required="" onblur="checkPhone();"
+						style="display:inline;width:50%;" /> <span id="errphone"
+						style="display:inline;width:40%;"></span>
+					<div class="clear"></div>
+				</div>
+
+				<div class="container-login100-form-btn" style="margin-top:20px;">
+					<div class="wrap-login100-form-btn">
+						<div class="login100-form-bgbtn"></div>
+						<button class="login100-form-btn" disabled="disabled" id="bt1">注册</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>患者页面</title>
+  <!-- load CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">    <!-- Google web font "Open Sans" -->
+  <link rel="stylesheet" href="../gystyle/authority/bootstrap.min.css">                                        <!-- https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="../gystyle/authority/templatemo-style.css">                                     <!-- Templatemo style -->
+
+  <script>
+    var renderPage = true;
+
+    if(navigator.userAgent.indexOf('MSIE')!==-1
+      || navigator.appVersion.indexOf('Trident/') > 0){
+        /* Microsoft Internet Explorer detected in. */
+        alert("Please view this in a modern browser such as Chrome or Microsoft Edge.");
+        renderPage = false;
+    }
+  </script>
+
+</head>
+
+<body>
+  <!-- Loader -->
+  <div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+  </div>
+
+ <div class="container">
+
+  <!-- 1st section -->
+  <section class="row tm-section">
+   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0">
+    <div class="tm-flex-center p-5 tm-bg-color-primary tm-section-min-h">
+      <q class="tm-quote tm-text-color-white" style="margin-top:-80px;">管理平台</q>      
+     <h4 style="font-size:18px;margin-top:100px;">管理平台展示患者账号下的<a href=""><br/>医生挂号</a>和<a href="">既往病史</a>两个模块！
+      </h4> 
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    <div class="tm-flex-center p-5">
+      <q class="tm-quote tm-text-color-gray" style="margin-top:-80px;">预警平台</q>
+         <h4 style="font-size:18px;margin-top:100px;">患者角色下的预警平台，支持查看自己的实时<br/>体征态势图，支持查看发病识别结果。</h4> 
+    </div>
+  </div>
+</section>
+  <section class="row tm-section">
+   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    <div class="tm-flex-center p-5">
+      <q class="tm-quote tm-text-color-gray" style="margin-top:-80px;">医患社区</q>
+      <h4 style="font-size:18px;margin-top:100px;"><br/>这里有千万病友交流分享,积累就医经验,<br/>增长健康知识,这里名医汇聚,享受三甲<br/>医生的专属服务,帮你解决看病难题。</h4> 
+    </div>
+  </div>
+  
+   <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0">
+    <div class="tm-flex-center p-5 tm-bg-color-primary tm-section-min-h">
+      <q class="tm-quote tm-text-color-white" style="margin-top:-80px;">信息平台</q>   
+       <h4 style="font-size:18px;margin-top:100px;"><br/>包含<a href="">患者留言</a>、<a href="">重置密码</a>、<a href="">个人信息展示</a>以及<br/><a href="">退出系统</a>等功能</h4> 
+    </div>
+  </div>
+ 
+</section>
+<!-- 2nd section 
+<section class="row tm-section tm-col-md-reverse">
+ <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+  <div class="tm-flex-center p-5">
+    <div class="tm-md-flex-center">
+      <h2 class="tm-text-color-primary mb-4"></h2>
+      <p class="mb-4">预警平台</p>-->
+     <!--  <a href="#" class="btn btn-primary float-lg-right tm-md-align-center">Read more</a> 
+    </div>
+  </div>
+</div>
+<div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0">
+  <div class="tm-flex-center p-5 tm-bg-color-primary">
+    <div class="tm-max-w-400 tm-flex-center tm-flex-col">-->
+     <!--  <img src="img/image-04.jpg" alt="Image" class="rounded-circle mb-4"> 
+      <p class="tm-text-color-white small tm-font-thin mb-0">医患社区</p>
+    </div>
+  </div>
+</div>
+</section>-->
+
+<!-- 3rd Section -->
+<!-- <section class="row tm-section tm-mb-30">
+  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-0 text-center"> -->
+   <!--  <img src="img/image-01.jpg" alt="Image" class="img-fluid"> -->
+<!--   </div>
+  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    <div class="tm-flex-center p-5">
+      <div class="tm-flex-center tm-flex-col" >
+        <h2 class="tm-align-left">基础功能</h2> -->
+        <!-- <p>This is one-page HTML5 template that you can use for any purpose. Please tell your friends about <a href="#" target="_parent">TemplateMo</a> website. Thank you.</p>
+        <a href="#" class="btn btn-primary">Read More</a> -->
+  <!--     </div>
+    </div>
+  </div>
+</section> -->
+
+
+<script src="../gyscripts/jquery/jquery-3.2.1.slim.min.js"></script>      
+<script>
+
+  $(function(){
+
+    if(renderPage) {
+      $('body').addClass('loaded');
+    }
+
+    $('.tm-current-year').text(new Date().getFullYear()); 
+  });
+
+</script>
+
+</body>
+</html>

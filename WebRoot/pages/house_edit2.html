@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>信息管理系统</title>
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="../gyscripts/jquery/jquery-1.7.1.js"></script>
+<link href="../gystyle/authority/basic_layout.css" rel="stylesheet" type="text/css">
+<link href="../gystyle/authority/common_style.css" rel="stylesheet" type="text/css"> 
+
+<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<link href="../css/user.main.css" rel="stylesheet" />
+<link href="..css/user.all.css" rel="stylesheet">
+<link href="../css/bootstrapMM.min.css" rel="stylesheet" />
+<link href="../css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet" />
+<link href="../css/demo.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="../css/style2.css" />
+    <script type="text/javascript" src="../js/jquery.min.js"></script>  
+<script type="text/javascript" src="../gyscripts/authority/commonAll.js"></script>
+<script type="text/javascript" src="../gyscripts/jquery/jquery-1.4.4.min.js"></script>
+<script src="../gyscripts/My97DatePicker/WdatePicker.js" type="text/javascript" defer="defer"></script>
+<script type="text/javascript" src="../gyscripts/artDialog/artDialog.js?skin=default"></script>
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		var test =decodeURI(window.location.href);
+		//alert(test);
+		var index = test.indexOf('fyID=');
+		var obj = JSON.parse(test.substr(index+5));
+		
+		document.getElementById('name').value = obj.doctor.name.toString();
+		document.getElementById('sex').value = (obj.doctor.sex==1?"男":"女");
+		
+		var birthday = obj.doctor.birthday;
+		birthday = birthday.replace("T"," ");
+		birthday = birthday.replace(/-/g,"/");
+		var start = new Date(birthday);
+		var end = new Date();
+		var age = Math.ceil((end-start)/(1000*3600*24*365));//向上取整
+		document.getElementById('age').value = age;
+		
+		var Depart= obj.doctor.department.toString();
+		var dep= "";
+		switch(Depart)
+		{
+			case '0':
+				dep = "内科";
+				break;
+			case '1':
+				dep = "外科";
+				break;
+			case '2':
+				dep = "妇产科";
+				break;
+			case '3':
+				dep = "男科";
+				break;
+			case '4':
+				dep = "儿科";
+				break;
+			case '5':
+				dep = "五官科";
+				break;
+			case '6':
+				dep = "肿瘤科";
+				break;
+			case '7':
+				dep = "皮肤性病科";
+				break;
+			case '8':
+				dep = "中医科";
+				break;
+			case '9':
+				dep = "传染";
+				break;
+			case '10':
+				dep = "精神心理科";
+				break;
+			case '11':
+				dep = "整形美容科";
+				break;
+			case '12':
+				dep = "营养科";
+				break;
+			case '13':
+				dep = "生殖中心";
+				break;
+			case '14':
+				dep = "麻醉医学科";
+				break;
+			case '15':
+				dep = "医学影像科";
+				break;
+			case '16':
+				dep = "其他科室";
+				break;
+			default:
+				dep = "未知";
+		}
+		document.getElementById('ks').value = dep;
+		
+		var tt = obj.doctor.title.toString();
+		var tit;
+		switch(tt){
+			case '0':
+				tit = "医师";
+				break;
+			case '1':
+				tit = "主治医师";
+				break;
+			case '2':
+				tit = "副主任医师";
+				break;
+			case '3':
+				tit = "主任医师";
+				break;
+			default:
+				tit = "未知";
+		}
+		document.getElementById('zc').value = tit;
+		
+		var time = obj.part.toString();
+		var fabing=null;
+		switch(time){
+			case '0':
+			    fabing ="全身";break;
+		    case '1':
+			    fabing ="头部";break;
+			case '2':
+			    fabing ="颈部";break;
+			case '3':
+			    fabing ="胸部";break;
+			case '4':
+			    fabing ="腹部";break;
+			case '5':
+			    fabing ="腰部";break;
+			case '6':
+			    fabing ="背部";break;
+			case '7':
+			    fabing ="皮肤";break;
+			case '8':
+			    fabing ="四肢";break;
+			case '9':
+			    fabing ="男科";break;
+			case '10':
+			    fabing ="妇科";break;		
+		}
+		document.getElementById('fbbw').value = fabing;
+		document.getElementById('bingq').value = obj.description.toString();
+		document.getElementById('zdjg').value = obj.content.toString();
+		
+	});
+	
+</script>
+</head>
+<body>
+
+<div id="nav_links">
+	当前位置：管理平台&nbsp;>&nbsp;<span style="color: #1A5CC6;">查看就诊记录</span>
+		<div id="page_close">
+			<a href="javascript:parent.$.fancybox.close();">
+				<img src="gyimages/common/page_close.png" width="20" height="20" style="vertical-align: text-top;"/>
+			</a>
+		</div>
+</div>
+<div class="card">
+   <div class="card-header" "><h5 class="title">医生信息</h5></div>
+	<div class="card-body">
+   	<form>
+        		<div>
+        		   <br>
+        		   <span style="width:200px">
+                	<label style="font-size:16px;font-weight:bold;">姓名&nbsp;</label>
+                	<input id="name" type="text"  class="form-control" style="width:80px;text-align:center;font-size:16px;" disabled="" placeholder="医生姓名" value="">
+                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	</span>
+                	<span style="width:200px">
+                	<label style="font-size:16px;font-weight:bold;">性别&nbsp;</label>
+                	<input id="sex" type="text"  class="form-control" style="width:50px;text-align:center;font-size:16px;" disabled="" placeholder="性别" value="">
+                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	</span>
+                    <span style="width:200px">
+                	<label style="font-size:16px;font-weight:bold;">年龄&nbsp;</label>
+                	<input id="age" type="text"  class="form-control" style="width:50px;text-align:center;font-size:16px;" disabled="" placeholder="年龄" value="">
+                    </span>
+         			&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	<label style="font-size:16px;font-weight:bold;">科室&nbsp;</label>
+                    <input id="ks" type="text" class="form-control" style="width:150px;text-align:center;font-size:16px;" disabled="" placeholder="科室" value="">
+                    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </br>
+                  <br>  
+                    <label style="font-size:16px;font-weight:bold;">职称&nbsp;</label>
+                    <input id="zc" type="text" class="form-control" style="width:150px;text-align:center;font-size:16px;" disabled="" placeholder="职称" value="">
+				  </br>             	
+             	</div>
+    </form>
+   </div>
+</div> 
+<div class="card">
+    <div class="card-header" ><h5 class="title">病历内容</h5>
+    	<div class="card-body2">
+   			<form>
+        		<div>
+        			<p>
+                	<div class="card-header"><h5 class="title">发病部位&nbsp;</h5></div>
+                	<!-- <input id="fbbw" type="text"  class="form-control" style="width:80px;text-align:center;font-size:16px;" disabled="" placeholder="发病部位" value="">
+                	</input> -->
+                	<textarea  id="fbbw" style="width:100%;height:70px;outline:none;border-style:dashed; border-radius:20px;resize:none; padding:10px 10px;overflow-y:auto;" readonly="readonly" ></textarea>
+					</p>
+					
+                	<br>
+                	<div class="card-header"><h5 class="title">病情描述&nbsp;</h5></div>
+                	<textarea  id="bingq" style="width:100%;height:70px;outline:none;border-style:dashed; border-radius:20px;resize:none; padding:10px 10px;overflow-y:auto;" readonly="readonly" ></textarea>
+                	</br>
+                	<br>
+                	<!-- <label style="font-size:16px;font-weight:bold;">诊断结果&nbsp;</label> -->
+                	<div class="card-header"><h5 class="title">诊断结果&nbsp;</h5></div>
+                	<textarea id="zdjg" style="width:100%;height:70px;outline:none;border-style:dashed; border-radius:20px;resize:none; padding:10px 10px;overflow-y:auto;" readonly="readonly" ></textarea>
+             		</br>
+             	</div>
+   			 </form>
+   		</div>
+
+	</div>
+</div>
+
+</body>
+</html>

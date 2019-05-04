@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>查看患者信息</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="../gyscripts/jquery/jquery-1.7.1.js"></script>
+<link href="../gystyle/authority/basic_layout.css" rel="stylesheet" type="text/css">
+<link href="../gystyle/authority/common_style.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/layer.css" />
+<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<link href="../css/user.main.css" rel="stylesheet" />
+<link href="..css/user.all.css" rel="stylesheet">
+<link href="../css/bootstrapMM.min.css" rel="stylesheet" />
+<link href="../css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet" />
+<link href="../css/demo.css" rel="stylesheet" />
+    
+<script type="text/javascript" src="../gyscripts/authority/commonAll.js"></script>
+<script type="text/javascript" src="../gyscripts/jquery/jquery-1.4.4.min.js"></script>
+<script src="../gyscripts/My97DatePicker/WdatePicker.js" type="text/javascript" defer="defer"></script>
+<script type="text/javascript" src="../gyscripts/artDialog/artDialog.js?skin=default"></script>
+<script type="text/javascript">
+
+		var rrdd;
+		
+	$(document).ready(function() {
+	
+		$("#cancelbutton").click(function() {
+			window.parent.$.fancybox.close();
+		});
+		var result = 'null';
+		if(result =='success'){
+			window.parent.$.fancybox.close();
+		}
+		
+		var test =decodeURI(window.location.href);
+		var index = test.indexOf('fyID=');
+		var obj = JSON.parse(test.substr(index+5));
+		var pid = obj.patient.pid;
+
+
+
+		$.ajax({
+			url : "findHistoryRecordByPid",
+			type : "POST",
+			data : {
+				"pid" : pid,
+			},
+			dataType : "JSON",
+			success : function(data) {
+				data = JSON.parse(data);
+				rrdd = data;
+				/*  alert(typeof(data)); 
+				 
+				for(var i = 0; i < data.length; i++){
+					var b = data[i];
+					for(var key in b){
+						alert(key + ":" + b[key]);
+					}
+				}  */ 
+				for(var i = data.length-1; i >= 0; i--)
+						{
+							$("#ggg").hide();
+							addRecord(data[i], i);
+						}
+			},
+			error : function(data) {
+				alert("+++++" + JSON.stringify(data));
+				alert("请求失败，请重试");
+				alert(data);
+			}
+			
+		});
+		
+		
+		document.getElementById('name').value = obj.patient.name.toString();
+		document.getElementById('sex').value = (obj.patient.sex==1?"男":"女");
+		
+		var birthday = obj.patient.birthday;
+		birthday = birthday.replace("T"," ");
+		birthday = birthday.replace(/-/g,"/");
+		var start = new Date(birthday);
+		var end = new Date();
+		var age = Math.ceil((end-start)/(1000*3600*24*365));//向上取整
+		document.getElementById('age').value = age;
+		
+		var time = obj.part.toString();
+		var fabing=null;
+		switch(time){
+			case '0':
+			    fabing ="全身";break;
+		    case '1':
+			    fabing ="头部";break;
+			case '2':
+			    fabing ="颈部";break;
+			case '3':
+			    fabing ="胸部";break;
+			case '4':
+			    fabing ="腹部";break;
+			case '5':
+			    fabing ="腰部";break;
+			case '6':
+			    fabing ="背部";break;
+			case '7':
+			    fabing ="皮肤";break;
+			case '8':
+			    fabing ="四肢";break;
+			case '9':
+			    fabing ="男科";break;
+			case '10':
+			    fabing ="妇科";break;		
+		}
+		document.getElementById('fbbw').value = fabing;
+		document.getElementById('bingq').value = obj.description.toString();
+
+	});
+	
+	function addRecord(obj, i)
+	{
+		var html="";  
+		var datestr = obj.time;
+		html += "<tr>";
+		html += "<td>" + datestr.substring(0, 10) + "</td>";
+		html += "<td><u><a href=\"patient_dr.html?fyID="+encodeURI(JSON.stringify(rrdd[i]))+"\" class=\"edit\">"+ obj.doctor.name.toString(); +"</a></u></td>";
+/* 		html += "<td>" + obj.doctor.name.toString(); + "</td>"; */
+		var pp = obj.part.toString();
+		var fabing=null;
+		switch(pp){
+			case '0':
+			    fabing ="全身";break;
+		    case '1':
+			    fabing ="头部";break;
+			case '2':
+			    fabing ="颈部";break;
+			case '3':
+			    fabing ="胸部";break;
+			case '4':
+			    fabing ="腹部";break;
+			case '5':
+			    fabing ="腰部";break;
+			case '6':
+			    fabing ="背部";break;
+			case '7':
+			    fabing ="皮肤";break;
+			case '8':
+			    fabing ="四肢";break;
+			case '9':
+			    fabing ="男科";break;
+			case '10':
+			    fabing ="妇科";break;		
+		}
+		html += "<td>" + fabing + "</td>";	
+		html += "<td>";
+		html += "<u><a href=\"house_edit11.html?fyID="+encodeURI(JSON.stringify(rrdd[i]))+"\"  class=\"edit\">查看信息</a></u>";
+		html += "</td>";
+		html +=	"</tr>";	
+		$("#table2").append(html);
+	}
+
+</script>
+</head>
+<body>
+<div id="nav_links">
+	当前位置：管理平台&nbsp;>&nbsp;<span style="color: #1A5CC6;">查看患者信息</span>
+		<div id="page_close">
+			<a href="javascript:parent.$.fancybox.close();">
+				<img src="gyimages/common/page_close.png" width="20" height="20" style="vertical-align: text-top;"/>
+			</a>
+		</div>
+</div>
+<div class="card">
+   <div class="card-header"><h5 class="title">基本信息</h5></div>
+	<div class="card-body">
+   	<form>
+        		<div>
+                	<label style="font-size:16px;font-weight:bold;">姓名&nbsp;</label>
+                	<input type="text"  id ="name" class="form-control" style="width:100px;text-align:center;font-size:16px;" disabled="" placeholder="用户名" value="">
+                	&nbsp;&nbsp;&nbsp;&nbsp;
+                	<label style="font-size:16px;font-weight:bold;">性别&nbsp;</label>
+                	<input type="text" id="sex" class="form-control" style="width:50px;text-align:center;font-size:16px;" disabled="" placeholder="性别" value="">
+                	&nbsp;&nbsp;&nbsp;&nbsp;
+                	<label style="font-size:16px;font-weight:bold;">年龄&nbsp;</label>
+                	<input type="text"  id="age" class="form-control" style="width:50px;text-align:center;font-size:16px;" disabled="" placeholder="年龄" value="">
+                	&nbsp;&nbsp;&nbsp;&nbsp;
+                	<label style="font-size:16px;font-weight:bold;">发病部位&nbsp;</label>
+                    <input type="text" id = "fbbw" class="form-control" style="width:150px;text-align:center;font-size:16px;" disabled="" placeholder="发病部位" value="">
+             	</div>
+    </form>
+   </div>
+</div> 
+<div class="card">
+   <div class="card-header"><h5 class="title">病情描述</h5></div>
+   <textarea  id="bingq" style="width:100%;height:70px;outline:none;border-style:dashed; border-radius:20px;resize:none; padding:10px 10px;overflow-y:auto;" readonly="readonly" ></textarea>
+</div>
+<div class="card">
+   <div class="card-header"><h5 class="title">历史病历</h5></div>
+   <table class="table2" id="table2" cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
+   		<tr>
+			<th>就诊日期</th>
+			<th>就诊医生</th>
+			<th>发病部位</th>
+			<th>病情描述&诊断结果</th>
+			
+		</tr>
+		<tr id="ggg">
+			<td>该患者无历史病历</td>
+		</tr>
+
+   </table>
+  
+</div>
+
+
+</body>
+</html>

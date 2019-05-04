@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.multipart.maxSize" value="5242880000" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<bean type="org.apache.struts2.dispatcher.multipart.MultiPartRequest"
+		name="parser" class="com.cn.listener.MyMultiPartRequest" scope="default" optional="true"/>
+	<!--demo12，struts2文件上传与下载 -->
+	<constant name="struts.multipart.handler" value="parser" />
+	<!-- 添加websocket支持，不拦截ws请求 -->
+	<constant name="struts.action.excludePattern" value="/ws/.*,ws://.*"></constant>
+	
+	<!-- 根目录struts方式action -->
+	<package name="root" extends="struts-default" namespace="/">
+		<action name="enter" class="EnterAction" method="execute">
+			<result type="redirect" name="AlreadyLogin">/pages/platform.jsp</result>
+			<!-- 学习dispatch和redirect的区别
+				如果不进行redirect，login界面namespace应为/，并且相关资源获取处于根目录，而不是显式的目录 -->
+			<result type="redirect" name="NotLogin">/pages/login.html</result>
+		</action>
+		
+		<action name="user_*" class="UserAction" method="{1}">
+			<result name="SUCCESS">/pages/platform.jsp</result>
+			<result name="RSUCCESS">/pages/userprofile.jsp</result>
+			<result name="QUIT">/index.html</result>
+			<result name="ERROR">/error.jsp</result>
+		</action>
+		<!-- <action name="download" class="DownloadAction" method="download">
+			<result name="SUCCESS" type="stream">
+				以什么形式下载 默认为在线下载 并指定文件名
+				<param name="contentType">${mimeType}</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="inputName">inputStream</param>
+				Action里的流的名称
+			</result>
+		</action>
+		<action name="batchDownload" class="DownloadAction" method="batchDownload">
+			<result name="SUCCESS" type="stream">
+				以什么形式下载 默认为在线下载 并指定文件名
+				<param name="contentType">${mimeType}</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="inputName">inputStream</param>
+				Action里的流的名称
+			</result>
+		</action> -->
+	</package>
+	
+	<!-- 根目录ajax方式action -->
+	<package name="rootajax" extends="json-default" namespace="/">
+		<action name="saveMessage" class="MessageAction" method="saveMessage">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="deleteFileByFid" class="CfileAction" method="deleteFileByFid">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="findArticleById" class="ArticleAction" method="findArticleById">
+			<result name="SUCCESS" type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+		<action name="findArticlesByUid" class="ArticleAction" method="findArticlesByUid">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="updateArticles" class="ArticleAction" method="updateArticles">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="deleteArticle" class="ArticleAction" method="deleteArticle">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="findCommentsByAid" class="CommentAction" method="findCommentsByAid">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="addComment" class="CommentAction" method="addComment">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="findTreeMenu" class="CfileAction" method="findTreeMenu">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="changeParent" class="CfileAction" method="changeParent">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="findArticlesWithMaxComments" class="ArticleAction" method="findArticlesWithMaxComments">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="topFiveNewestArticles" class="ArticleAction" method="topFiveNewestArticles">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="allArticles" class="ArticleAction" method="allArticles">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- pages目录struts方式action -->
+	<package name="pages" extends="struts-default" namespace="/pages">
+		<action name="user_*" class="UserAction" method="{1}">
+			<result name="SUCCESS">/pages/platform.jsp</result>
+			<result name="RSUCCESS">/pages/userproquit.jsp</result>
+			<!-- <result name="USUCCESS" type="chain">userprofile_update</result> 试试type="chain" -->
+			<result name="QUIT" type="redirect">/index.html</result>
+			<result name="ERROR">/error.jsp</result>
+		</action>
+		
+		<action name="update" class="UpdateAction" method="update">
+			<result name="SUCCESS">/pages/userprofile.jsp</result>
+		</action>
+		
+		<action name="updateDoctor" class="UpdateAction" method="updateDoctor">
+			<result name="SUCCESS">/pages/doctorprofile.jsp</result>
+		</action>
+		<action name="saveInfo" class="UpdateAction" method="update">
+			<result name="SUCCESS">/pages/platform.jsp</result>
+		</action>
+		<action name="resetPwd" class="UpdateAction" method="resetPwd">
+			<result name="SUCCESS">/pages/resetsuccess.html</result>
+		</action>
+		<action name="resetPwdByEmail" class="UpdateAction" method="resetPwdByEmail">
+			<result name="SUCCESS">/pages/resetsuccess.html</result>
+			<result name="QQSUCCESS" type="redirect">https://mail.qq.com/</result>
+			<result name="189SUCCESS" type="redirect">https://webmail30.189.cn/w2/</result>
+			<result name="SINASUCCESS" type="redirect">https://mail.sina.com.cn/</result>
+			<result name="163SUCCESS" type="redirect">https://email2.163.com/</result>
+		</action>
+		<action name="resetPwdByCode" class="UpdateAction" method="resetPwdByCode">
+			<result name="SUCCESS">/pages/login.html</result>
+		</action>
+		<action name="addDoctorAccount" class="UpdateAction" method="addDoctorAccount">
+			<result name="SUCCESS">/pages/member_list.jsp</result>
+		</action>
+		<action name="saveArticle" class="UploadAction" method="saveArticle">
+			<result name="SUCCESS" type="redirect">/index.html</result>
+		</action>
+		
+		<action name="download" class="DownloadAction" method="download">
+			<result name="SUCCESS" type="stream">
+				以什么形式下载 默认为在线下载 并指定文件名
+				<param name="contentType">${mimeType}</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="inputName">inputStream</param>
+				Action里的流的名称
+			</result>
+		</action>
+		<action name="batchDownload" class="DownloadAction" method="batchDownload">
+			<result name="SUCCESS" type="stream">
+				以什么形式下载 默认为在线下载 并指定文件名
+				<param name="contentType">${mimeType}</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="inputName">inputStream</param>
+				Action里的流的名称
+			</result>
+		</action>
+	</package>
+	
+	<!-- 根目录ajax方式action -->
+	<package name="ajax" extends="json-default" namespace="/pages">
+		<action name="isRegister" class="UserAction" method="isRegister">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="deleteUser" class="UserAction" method="deleteUser">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="batchDeleteUsers" class="UserAction" method="batchDeleteUsers">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="resetPwdByUsername" class="UserAction" method="resetPwdByUsername">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="updateByAdmin" class="UserAction" method="updateByAdmin">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="SysUsersNoAdmin" class="UserAction" method="SysUsersNoAdmin">
+			<result name="SUCCESS" type="json">
+				<param name="root">userList</param>
+			</result>
+		</action>
+		<action name="findAllPatients" class="DoctorAction" method="findAllPatients">
+			<result name="SUCCESS" type="json">
+				<param name="root">list</param>
+			</result>			
+		</action>
+	
+		<!-- <action name="filter" class="DoctorAction" method="filter">
+			<result name="SUCCESS" type="json">
+				<param name="root">list</param>
+			</result>
+		</action> -->
+		<action name="findDoctors" class="PatientAction" method="findDoctors">
+			<result name="SUCCESS" type="json">
+				<param name="root">res</param>
+			</result>
+		</action>
+		<action name="isReg" class="PatientAction" method="isReg">
+			<result name="SUCCESS" type="json">
+				<param name="root">status</param>
+			</result>
+		</action>
+		<action name="allMessages" class="MessageAction" method="allMessages">
+			<result name="SUCCESS" type="json">
+				<param name="root">list</param>
+			</result>
+		</action>
+		<action name="changeStatus" class="MessageAction" method="changeStatus">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="batchChangeStatus" class="MessageAction" method="batchChangeStatus">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="deleteMessage" class="MessageAction" method="deleteMessage">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="batchDeleteMessage" class="MessageAction" method="batchDeleteMessage">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="saveMessage" class="MessageAction" method="saveMessage">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="addMrecord" class="MrecordAction" method="addMrecord">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="addDandp" class="MrecordAction" method="saveDandp">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="deleteDandp" class="MrecordAction" method="deleteDandp">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="deleteDandpById" class="MrecordAction" method="deleteDandpById">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="batchDeleteDandps" class="MrecordAction" method="batchDeleteDandps">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="updateDandp" class="MrecordAction" method="updateDandp">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="findHistoryRecordByPid" class="MrecordAction" method="findHistoryRecordByPid">
+			<result name="SUCCESS" type="json">
+				<param name="root">list</param>
+			</result>
+		</action>
+		<action name="findHistoryRecordByDid" class="MrecordAction" method="findHistoryRecordByDid">
+			<result name="SUCCESS" type="json">
+				<param name="root">list</param>
+			</result>
+		</action>
+		<action name="uploadImage" class="UploadAction" method="uploadImage">
+			<result name="SUCCESS" type="json">
+				<param name="root">map</param>
+			</result>
+		</action>
+		<action name="saveArticle" class="UploadAction" method="saveArticle">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="findArticlesWithMaxComments" class="ArticleAction" method="findArticlesWithMaxComments">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="topFiveNewestArticles" class="ArticleAction" method="topFiveNewestArticles">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="allArticles" class="ArticleAction" method="allArticles">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="articlesInCategory" class="ArticleAction" method="articlesInCategory">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="articlesByKeyword" class="ArticleAction" method="articlesByKeyword">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="loadTopTenSolu" class="ArticleAction" method="loadTopTenSolu">
+			<result name="SUCCESS" type="json">
+				<param name="root">articles</param>
+			</result>
+		</action>
+		<!-- <action name="findArticleById" class="ArticleAction" method="findArticleById">
+			<result name="SUCCESS" type="json">
+				<param name="root">json</param>
+			</result>
+		</action> -->
+		<action name="loadTopTenKnow" class="ArticleAction" method="loadTopTenKnow">
+			<result name="SUCCESS" type="json">
+				<param name="root">articles</param>
+			</result>
+		</action>
+		<action name="findArticleById" class="ArticleAction" method="findArticleById">
+			<result name="SUCCESS" type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+		<action name="findArticlesByUid" class="ArticleAction" method="findArticlesByUid">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="updateArticles" class="ArticleAction" method="updateArticles">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="deleteArticle" class="ArticleAction" method="deleteArticle">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="findCommentsByAid" class="CommentAction" method="findCommentsByAid">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="addComment" class="CommentAction" method="addComment">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="createFolder" class="CfileAction" method="createFolder">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="uploadCfile" class="CfileAction" method="uploadCfile">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- <action name="changeParent" class="CfileAction" method="changeParent">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action> -->
+		<action name="deleteFileByFid" class="CfileAction" method="deleteFileByFid">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="batchDeleteFileByFids" class="CfileAction" method="batchDeleteFileByFids">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="sharedOrCancelShared" class="CfileAction" method="sharedOrCancelShared">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="inOrOutRecycleBin" class="CfileAction" method="inOrOutRecycleBin">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="batchInOrOutRecycleBin" class="CfileAction" method="batchInOrOutRecycleBin">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="fileRename" class="CfileAction" method="fileRename">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="findTreeMenu" class="CfileAction" method="findTreeMenu">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="filesInCurrentFolder" class="CfileAction" method="filesInCurrentFolder">
+			<result name="SUCCESS" type="json">
+				<param name="root">list</param>
+			</result>
+		</action>
+		<action name="findCfilesInUserParentPath" class="CfileAction" method="findCfilesInUserParentPath">
+			<result name="SUCCESS" type="json">
+				<param name="root">list</param>
+			</result>
+		</action>
+		<action name="fileById" class="CfileAction" method="fileById">
+			<result name="SUCCESS" type="json">
+				<param name="root">list</param>
+			</result>
+		</action>
+		
+		<action name="exrecordsByPid" class="ExrecordAction" method="exrecordsByPid">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="deleteExrecord" class="ExrecordAction" method="deleteExrecord">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="findLastSevenDaysExNumsByDid" class="ExrecordAction" method="findLastSevenDaysExNumsByDid">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="countsOnTimePeriod" class="ExrecordAction" method="countsOnTimePeriod">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="saveExstatistic" class="ExstatisticAction" method="saveExstatistic">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="returnStatictisResult" class="ExstatisticAction" method="returnStatictisResult">
+			<result name="SUCCESS" type="json">
+				<param name="root">json</param>
+			</result>
+		</action>
+		<action name="returnModelResult" class="UtilAction" method="returnModelResult">
+			<result name="SUCCESS" type="json">
+				<param name="root">array</param>
+			</result>
+		</action>
+		<action name="replaceModelAndResult" class="UtilAction" method="replaceModelAndResult">
+			<result name="SUCCESS" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+</struts>

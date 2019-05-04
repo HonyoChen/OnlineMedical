@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>在线医疗</title>
+<meta name="keywords"
+	content="powerful, responsive, fluid, bootstrap, blue, white, free website template, templatemo" />
+<meta name="description"
+	content="Powerful is a responsive template based on Bootstrap. This fluid layout is ready for mobile devices and provided by templatemo for free download." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="css/templatemo_style.css" rel="stylesheet">
+<link href="css/circle.css" rel="stylesheet">
+<link href="css/jquery.bxslider.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/nivo-slider.css">
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,600'
+	rel='stylesheet' type='text/css'>
+<script type="text/javascript">
+	function showImg() {
+		document.getElementById("wxImg").style.display = 'block';
+	}
+
+	function hideImg() {
+		document.getElementById("wxImg").style.display = 'none';
+
+	}
+
+	function submitForm() {
+		document.getElementById("enter").submit();
+	}
+
+	function submitMessage() {
+		//alert("提交信息");
+		$.ajax({
+			url : "saveMessage",
+			type : "POST",
+			data : {
+				"method" : 0,
+				"username" : document.getElementById("fullname").value,
+				"email" : document.getElementById("email").value,
+				"phone" : document.getElementById("subject").value,
+				"title" : document.getElementById("biaoti").value,
+				"category" : document.getElementById("lb").value,
+				"content" : document.getElementById("message").value
+			},
+			dataType : "text",
+			//async : false,
+			success : function(data) {
+				alert("留言成功");
+				document.getElementById("fullname").value = "";
+				document.getElementById("email").value = "";
+				document.getElementById("subject").value = "";
+				document.getElementById("biaoti").value = "";
+				document.getElementById("lb").value = "";
+				document.getElementById("message").value = "";
+			},
+			error : function(data) {
+				alert("请求失败，请重试");
+				window.location.reload();
+			}
+		});
+	}
+</script>
+
+<script src="js/modernizr.custom.js"></script>
+<body>
+	<header>
+		<div id="templatemo_top" class="mainTop">
+			<div class="container">
+				<div class="row">
+					<div class="hidden-xs hidden-sm col-md-6">
+						<div class="mailme">
+							<a href="mailto:info@company.com"><i class="fa fa-envelope"></i>info@company.com</a>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-6">
+						<div class="socials">
+							<ul>
+								<li><a href="javascript:void(0)" onMouseOut="hideImg()"
+									onmouseover="showImg()"><i class="fa fa-weibo soc"></i></a>
+									<div id="wxImg"
+										style="display:none;z-index:999;position:absolute;">
+										<img src="weibo/weixin.jpg">
+									</div></li>
+								<li><a href="#"><i class="fa fa-renren soc"></i></a></li>
+								<li><a href="https://github.com/" target="_blank"><i
+										class="fa fa-github soc"></i></a></li>
+								<li><a href="#"><i class="fa fa-qq soc"></i></a></li>
+								<li><a href="#"><i class="fa fa-weixin soc"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="slider" class="nivoSlider">
+			<a href="#"><img src="images/slider/img_1.jpg" alt="slide 1" /></a>
+			<a href="#"><img src="images/slider/img_2.jpg" alt="slide 2" /></a>
+			<a href="#"><img src="images/slider/img_3.jpg" alt="slide 3" /></a>
+		</div>
+	</header>
+
+	<div class="mWrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-md-4">
+					<div class="logo">
+						<a href="#"><img src="images/logo.png" alt="Powerful Theme"></a>
+					</div>
+				</div>
+				<div class="col-sm-8 col-md-8">
+					<nav class="mainMenu">
+						<ul class="nav">
+							<li><a href="#templatemo_top">首页</a></li>
+							<li><a href="#templatemo_services">智能平台</a></li>
+							<li><a href="#templatemo_portfolio">解决方案</a></li>
+							<li><a href="#templatemo_about">加入我们</a></li>
+							<li><a href="#templatemo_contact">联系我们</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="templatemo_services" class="section1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="secHeader">
+						<h1 class="text-center">智能平台</h1>
+						<p class="text-center">
+							<small>Star
+								Health立足于帕金森病和心脏病聚类分析、癫痫发作识别等医疗大数据的智能识别算法，在其上设计实时监测功能，通过实时采集患者体征数据，进行实时的发病预测识别。平台设计实现管理员、医生、患者等三类用户角色，并通过构建管理平台、数据平台、预警平台、医患社区四个子平台构建完整应用体系。</small>
+						</p>
+					</div>
+					<div class="row">
+						<div class="col-xs-6 col-sm-6 col-md-3">
+							<div class="blok text-center">
+								<div class="hexagon-a">
+									<a class="hlinktop" href="#">
+										<div class="hexa-a">
+											<div class="hcontainer-a">
+												<div class="vertical-align-a">
+													<span class="texts-a"><i class="fa fa-bell"></i></span>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="hexagon">
+									<a class="hlinkbott" href="#">
+										<div class="hexa">
+											<div class="hcontainer">
+												<div class="vertical-align">
+													<span class="texts"></span>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+								<h4>管理平台</h4>
+								<p>
+									<small>管理平台用于系统用户的日常管理，包括用户个人信息查看、修改，系统用户权限设置，医患之间关联、发布信息等。</small>
+								</p>								
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-6 col-md-3">
+							<div class="blok text-center">
+								<div class="hexagon-a">
+									<a class="hlinktop" href="#">
+										<div class="hexa-a">
+											<div class="hcontainer-a">
+												<div class="vertical-align-a">
+													<span class="texts-a"><i class="fa fa-rocket"></i></span>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="hexagon">
+									<a class="hlinkbott" href="#">
+										<div class="hexa">
+											<div class="hcontainer">
+												<div class="vertical-align">
+													<span class="texts"></span>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+								<h4>数据平台</h4>
+								<p>
+									<small>数据平台用于医生间文件共享，智能识别算法的调整实现，具体包括数据的上传下载共享，模型参数设置，对训练效果进行可视化展示。</small>
+								</p>
+								<a class="btn btn-primary" href="javascript:;"
+									onclick="submitForm()">进入系统</a>
+								<form action="enter" method="post" id="enter" display="none"></form>
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-6 col-md-3">
+							<div class="blok text-center">
+
+								<div class="hexagon-a">
+									<a class="hlinktop" href="#">
+										<div class="hexa-a">
+											<div class="hcontainer-a">
+												<div class="vertical-align-a">
+													<span class="texts-a"><i class="fa fa-mobile-phone"></i></span>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="hexagon">
+									<a class="hlinkbott" href="#">
+										<div class="hexa">
+											<div class="hcontainer">
+												<div class="vertical-align">
+													<span class="texts"></span>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+
+								<h4>预警平台</h4>
+								<p>
+									<small>预警平台模拟实时体征采集场景，通过分析实时数据进行发病识别，并进行相应预警，开放接口用于真实体征数据的接入识别。</small>
+								</p>
+								<a href="pages/NewDPCommunity.jsp" class="btn btn-primary">游客访问</a>
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-6 col-md-3">
+							<div class="blok text-center">
+
+								<div class="hexagon-a">
+									<a class="hlinktop" href="#">
+										<div class="hexa-a">
+											<div class="hcontainer-a">
+												<div class="vertical-align-a">
+													<span class="texts-a"><i class="fa fa-tags"></i></span>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="hexagon">
+									<a class="hlinkbott" href="#">
+										<div class="hexa">
+											<div class="hcontainer">
+												<div class="vertical-align">
+													<span class="texts"></span>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+
+								<h4>医患社区</h4>
+								<p>
+									<small>医患社区用于医生发布疾病预防知识、临床医学经验、发布智能算法内容等，患者发布病情咨询等，是一个用户间的信息分享平台。</small>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- e/o section1 -->
+
+<!-- 	<div id="templatemo_portfolio" class="section2">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="secHeader">
+						<h1 class="text-center">解决方案</h1>
+						<p class="text-center">
+							<small>Nam scelerisque dui ultricies mollis interdum.
+								Aenean at lectus quis risus pretium placerat. Sed consectetur
+								bibendum pharetra. Mauris tincidunt a augue nec porta. Fusce
+								porttitor leo est, id convallis erat pretium sed.</small>
+						</p>
+					</div>
+					<div class="glView">
+						<div class="switcher">
+							<ul>
+								<li id="grid" class="grid"><i class="fa fa-th-large"></i></li>
+								<li id="list" class="list"><i class="fa fa-align-justify"></i></li>
+							</ul>
+						</div>
+						<div class="menuSwitch">
+							<ul>
+								<li class="cat-active" category="prod-cnt">All</li>
+								<li class="" category="webdesign">Webdesign</li>
+								<li class="" category="graphic">Graphic</li>
+								<li class="" category="inspiration">Inspiration</li>
+								<li class="" category="creative">Creative</li>
+							</ul>
+						</div>
+
+						<div class="imgSwitch">
+							<div class="row">
+								<div class="col-xs-6 col-sm-3 col-md-3 dbox prod-cnt graphic">
+									<div class="itemCont">
+										<a href="http://sc.chinaz.com/?/">
+											<div class="thumb">
+												<img class="img-responsive center-block" alt="Blue Gate"
+													src="images/grids/img1.jpg">
+											</div>
+											<div class="itemInfo">
+												<h4>The Blue Gate</h4>
+												<h6>Graphic</h6>
+												<p>Etiam faucibus id orci et mollis. Donec at ultricies
+													erat. Sed sodales dapibus felis vehicula tempus. Class
+													aptent taciti sociosqu ad litora torquent per conubia
+													nostra, per inceptos himenaeos. Nullam id eros ac elit
+													blandit vestibulum sed non erat.</p>
+											</div>
+										</a>
+										<button type="button" class="btn btn-primary goto">view</button>
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-3 col-md-3 dbox prod-cnt webdesign">
+									<div class="itemCont">
+										<a href="http://sc.chinaz.com/?/">
+											<div class="thumb">
+												<img class="img-responsive center-block" alt="Womens Stone"
+													src="images/grids/img2.jpg">
+											</div>
+											<div class="itemInfo">
+												<h4>Women's Stone</h4>
+												<h6>Webdesign</h6>
+												<p>Class aptent taciti sociosqu ad litora torquent per
+													conubia nostra, per inceptos himenaeos. Etiam suscipit
+													ipsum eget est commodo, quis pellentesque nisi blandit.
+													Proin vitae felis ac est viverra faucibus vel eu nisl.</p>
+											</div>
+										</a>
+										<button type="button" class="btn btn-primary goto">view</button>
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-3 col-md-3 dbox prod-cnt creative">
+									<div class="itemCont">
+										<a href="http://sc.chinaz.com/?/">
+											<div class="thumb">
+												<img class="img-responsive center-block" alt="Elves Past"
+													src="images/grids/img3.jpg">
+											</div>
+											<div class="itemInfo">
+												<h4>Elves of Past</h4>
+												<h6>Creative</h6>
+												<p>Cras et adipiscing nulla, ut pulvinar lectus. Duis
+													facilisis vulputate sapien sed pretium. Vivamus imperdiet
+													purus nec vestibulum venenatis. Maecenas ultricies velit
+													eget dui viverra, vitae iaculis lorem dignissim.</p>
+											</div>
+										</a>
+										<button type="button" class="btn btn-primary goto">view</button>
+									</div>
+								</div>
+								<div
+									class="col-xs-6 col-sm-3 col-md-3 dbox prod-cnt inspiration">
+									<div class="itemCont">
+										<a href="http://sc.chinaz.com/?/">
+											<div class="thumb">
+												<img class="img-responsive center-block" alt="Silken Wife"
+													src="images/grids/img4.jpg">
+											</div>
+											<div class="itemInfo">
+												<h4>The Silken Wife</h4>
+												<h6>Inspiration</h6>
+												<p>Vestibulum ante ipsum primis in faucibus orci luctus
+													et ultrices posuere cubilia Curae; In pharetra lorem non
+													libero eleifend varius. Ut vel augue purus. Sed auctor
+													accumsan nulla, eget imperdiet sapien tincidunt quis.</p>
+											</div>
+										</a>
+										<button type="button" class="btn btn-primary goto">view</button>
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-3 col-md-3 dbox prod-cnt webdesign">
+									<div class="itemCont">
+										<a href="http://sc.chinaz.com/?/">
+											<div class="thumb">
+												<img class="img-responsive center-block" alt="Some Vision"
+													src="images/grids/img5.jpg">
+											</div>
+											<div class="itemInfo">
+												<h4>Some Vision</h4>
+												<h6>Webdesign</h6>
+												<p>Donec rutrum, magna a aliquam suscipit, nisl urna
+													vehicula neque, vel feugiat nunc mi non velit. Vivamus id
+													varius turpis. Nam vitae tortor vitae magna malesuada
+													congue.</p>
+											</div>
+										</a>
+										<button type="button" class="btn btn-primary goto">view</button>
+									</div>
+								</div>
+								<div
+									class="col-xs-6 col-sm-3 col-md-3 dbox prod-cnt inspiration">
+									<div class="itemCont">
+										<a href="http://sc.chinaz.com/?/page/6">
+											<div class="thumb">
+												<img class="img-responsive center-block" alt="Snow Woman"
+													src="images/grids/img6.jpg">
+											</div>
+											<div class="itemInfo">
+												<h4>Snow of Woman</h4>
+												<h6>Inspiration</h6>
+												<p>Vivamus justo nisi, ornare id lobortis non, cursus in
+													enim. Quisque semper dui vitae tempor dictum. Duis nec
+													luctus est, eget dictum ipsum. Pellentesque ultrices
+													posuere metus sit amet volutpat.</p>
+											</div>
+										</a>
+										<button type="button" class="btn btn-primary goto">view</button>
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-3 col-md-3 dbox prod-cnt graphic">
+									<div class="itemCont">
+										<a href="http://sc.chinaz.com/?/page/7">
+											<div class="thumb">
+												<img class="img-responsive center-block" alt="Mist Witches"
+													src="images/grids/img7.jpg">
+											</div>
+											<div class="itemInfo">
+												<h4>Mist Witches</h4>
+												<h6>Graphic</h6>
+												<p>Nulla sagittis mi ante. Mauris a nunc id sapien
+													iaculis sodales vel a turpis. Proin a velit fermentum,
+													rutrum enim sed, venenatis diam. Nunc commodo lorem quis
+													sagittis luctus. Praesent faucibus fermentum eros at
+													lacinia.</p>
+											</div>
+										</a>
+										<button type="button" class="btn btn-primary goto">view</button>
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-3 col-md-3 dbox prod-cnt creative">
+									<div class="itemCont">
+										<a href="http://sc.chinaz.com/?/page/8">
+											<div class="thumb">
+												<img class="img-responsive center-block"
+													alt="Wind of Worlds" src="images/grids/img8.jpg">
+											</div>
+											<div class="itemInfo">
+												<h4>Wind of Worlds</h4>
+												<h6>Creative</h6>
+												<p>Sed tellus risus, mollis sit amet ultrices vel,
+													fermentum porttitor felis. Morbi porta placerat facilisis.
+													Ut pretium, nunc et luctus bibendum, nulla ipsum malesuada
+													justo, sit amet adipiscing nunc nulla et magna.</p>
+											</div>
+										</a>
+										<button type="button" class="btn btn-primary goto">view</button>
+									</div>
+								</div>
+							</div>
+							<div class="loadit">
+								<button type="button" class="btn btn-primary">Load More</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+	<div id="templatemo_about" class="section3">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="secHeader">
+						<h1 class="text-center">
+							<a class="text-title" href="#"
+								title="免费的剪贴画 from cn.clipartlogo.com" target="_blank">加入我们</a>
+						</h1>
+						<p class="text-center">
+							<small>Star
+								Health是一个充满活力的集体，也是一个拥有巨大个人发展空间的舞台。在这里，我们每一个人为之奋斗和为之奉献的，不仅仅是一份薪水，而是中国的互联网事业。</small>
+						</p>
+					</div>
+					<div class="knobWrap">
+						<div class="row">
+							<div class="col-sm-6 col-md-3">
+								<div class="knob">
+									<div class="c100 p100 big">
+										<span>往届生入口</span>
+										<div class="slice">
+											<div class="bar"></div>
+											<div class="fill"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="knob">
+									<div class="c100 p100 big">
+										<span>应届生入口</span>
+										<div class="slice">
+											<div class="bar"></div>
+											<div class="fill"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="knob">
+									<div class="c100 p100 big">
+										<span>实习生入口</span>
+										<div class="slice">
+											<div class="bar"></div>
+											<div class="fill"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="knob">
+									<div class="c100 p100 big">
+										<span>人才计划</span>
+										<div class="slice">
+											<div class="bar"></div>
+											<div class="fill"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="infoTxt">
+						<p class="text-center">
+							<small>Star
+								Health主要研究大数据、隐私保护、机器学习等领域，开发与社会需求密切相关的项目，为我们的生活提供更好的服务。主要面向医疗、教育等领域，基于隐私保护提供各种智能平台服务。</small>
+						</p>
+					</div>					
+					<div class="infoTxt">
+						<p class="text-center">
+							<small>我们一直深信：年轻、活力、激情是我们发展、创新的动力。在这里，你将有机会领略到我们团队的创业魅力，感受分秒必争、时刻创新的精神氛围，在这个优秀的平台上，我们相信你一定能充分发掘自身潜力，尽情展示自己的才华，为日后步入社会打下坚实的实践基础。我们也会为见证你的成长而感到高兴。如果想在学习的同时觅得一份宝贵实践经验，请马上申请加入Star
+								Health的大家庭吧！</small>
+						</p>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="socials sbot">
+								<ul>
+									<li><a href="#"><i class="fa fa-weibo soc"></i></a></li>
+									<li><a href="#"><i class="fa fa-renren soc"></i></a></li>
+									<li><a href="#"><i class="fa fa-github soc"></i></a></li>
+									<li><a href="#"><i class="fa fa-qq soc"></i></a></li>
+									<li><a href="#"><i class="fa fa-weixin soc"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="templatemo_contact" class="section5">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="secHeader">
+						<h1 class="text-center">联系我们</h1>
+						<p class="text-center">
+							<small>非常感谢您对Star Health的支持和关注。若您在Star
+								Health网遇到不便，或者希望我们能为您做出更多的功能及改进，欢迎随时提出宝贵意见或建议，我们将根据您的需求不断完善。
+								如果您希望和Star Health进行业务合作，欢迎通过以下方式联系我们，我们真诚的期待在未来能与贵公司有合作的机会。<a
+								href="http://map.baidu.com/?newmap=1&ie=utf-8&s=s%26wd%3D%E9%99%95%E8%A5%BF%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6%28%E9%95%BF%E5%AE%89%E6%A0%A1%E5%8C%BA%29"
+								style="color:#0000FF;text-align:left">查看大图</a>
+							</small>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="templatemo_maps">
+						<div class="fluid-wrapper">
+							<iframe src="./pages/baidumap.html"></iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<form role="form">
+						<div class="form-group">
+							<input name="fullname" type="text" class="form-control"
+								id="fullname" placeholder="姓名：" maxlength="30">
+						</div>
+						<div class="form-group">
+							<input name="email" type="text" class="form-control" id="email"
+								placeholder="邮箱：" maxlength="30">
+						</div>
+						<div class="form-group">
+							<input name="subject" type="text" class="form-control"
+								id="subject" placeholder="手机：" maxlength="40">
+						</div>
+						<div class="form-group">
+							<input name="subject" type="text" class="form-control"
+								id="biaoti" placeholder="标题：" maxlength="40">
+						</div>
+						<div>
+							<select id="lb"
+								style="height:34px;width:120px;border: 1px #9D9D9D solid; border-radius:5px;text-align:center;text-align-last: center;">
+								<option value="">-- 类别 --</option>
+								<option value="0">意见建议</option>
+								<option value="1">投诉举报</option>
+							</select>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<button type="button" class="btn btn-primary"
+								onclick="submitMessage()">提&nbsp;&nbsp;&nbsp;&nbsp;交</button>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-6">
+					<div class="txtarea">
+						<textarea name="message" rows="10" class="form-control"
+							id="message" placeholder="留言："></textarea>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="addr">
+						<p>如果您对我们的产品感兴趣，欢迎索取详细的产品资料。如果您有意愿和我们合作拓展业务，欢迎留下您的联系方式,或者直接联系我们。</p>
+						<ul>
+							<li><i class="fa fa-map-marker"></i>西安市长安区西长安街620号</li>
+							<li><i class="fa fa-mobile-phone"></i>86-29-85308114</li>
+							<li><i class="fa fa-globe"></i><a
+								href="http://www.snnu.edu.cn/">Star Health</a></li>
+							<li><i class="fa fa-envelope"></i>info@company.com</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div id="back-top" class="gotop text-center">
+		<a href="#">回到顶部</a>
+	</div>
+
+	<div class="bfWrap text-center">
+		<div class="templatemo_footer">
+			Copyright &copy; 2014. Star Health All rights reserved.</a>
+		</div>
+	</div>
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.cycle2.min.js"></script>
+	<script src="js/jquery.cycle2.carousel.min.js"></script>
+	<script src="js/jquery.nivo.slider.pack.js"></script>
+	<script>$.fn.cycle.defaults.autoSelector = '.slideshow';
+	</script>
+	<script src="js/jquery.cookie.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var default_view = 'grid';
+			if ($.cookie('view') !== 'undefined') {
+				$.cookie('view', default_view, {
+					expires : 7,
+					path : '/'
+				});
+			}
+			function get_grid() {
+				$('.list').removeClass('list-active');
+				$('.grid').addClass('grid-active');
+				$('.prod-cnt').animate({
+					opacity : 0
+				}, function() {
+					$('.prod-cnt').removeClass('dbox-list');
+					$('.prod-cnt').addClass('dbox');
+					$('.prod-cnt').stop().animate({
+						opacity : 1
+					});
+				});
+			}
+			function get_list() {
+				$('.grid').removeClass('grid-active');
+				$('.list').addClass('list-active');
+				$('.prod-cnt').animate({
+					opacity : 0
+				}, function() {
+					$('.prod-cnt').removeClass('dbox');
+					$('.prod-cnt').addClass('dbox-list');
+					$('.prod-cnt').stop().animate({
+						opacity : 1
+					});
+				});
+			}
+			if ($.cookie('view') == 'list') {
+				$('.grid').removeClass('grid-active');
+				$('.list').addClass('list-active');
+				$('.prod-cnt').animate({
+					opacity : 0
+				});
+				$('.prod-cnt').removeClass('dbox');
+				$('.prod-cnt').addClass('dbox-list');
+				$('.prod-cnt').stop().animate({
+					opacity : 1
+				});
+			}
+	
+			if ($.cookie('view') == 'grid') {
+				$('.list').removeClass('list-active');
+				$('.grid').addClass('grid-active');
+				$('.prod-cnt').animate({
+					opacity : 0
+				});
+				$('.prod-cnt').removeClass('dboxlist');
+				$('.prod-cnt').addClass('dbox');
+				$('.prod-cnt').stop().animate({
+					opacity : 1
+				});
+			}
+	
+			$('#list').click(function() {
+				$.cookie('view', 'list');
+				get_list()
+			});
+	
+			$('#grid').click(function() {
+				$.cookie('view', 'grid');
+				get_grid();
+			});
+	
+			/* filter */
+			$('.menuSwitch ul li').click(function() {
+				var CategoryID = $(this).attr('category');
+				$('.menuSwitch ul li').removeClass('cat-active');
+				$(this).addClass('cat-active');
+	
+				$('.prod-cnt').each(function() {
+					if (($(this).hasClass(CategoryID)) == false) {
+						$(this).css({
+							'display' : 'none'
+						});
+					}
+					;
+				});
+				$('.' + CategoryID).fadeIn();
+	
+			});
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(window).load(function() {
+			$('#slider').nivoSlider({
+				prevText : '',
+				nextText : '',
+				controlNav : false,
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function() {
+	
+			// hide #back-top first
+			$("#back-top").hide();
+	
+			// fade in #back-top
+			$(function() {
+				$(window).scroll(function() {
+					if ($(this).scrollTop() > 100) {
+						$('#back-top').fadeIn();
+					} else {
+						$('#back-top').fadeOut();
+					}
+				});
+	
+				// scroll body to 0px on click
+				$('#back-top a').click(function() {
+					$('body,html').animate({
+						scrollTop : 0
+					}, 800);
+					return false;
+				});
+			});
+	
+		});
+	</script>
+	<script type="text/javascript">
+	<!--
+	    function toggle_visibility(id) {
+	       var e = document.getElementById(id);
+	       if(e.style.display == 'block'){
+	          e.style.display = 'none';
+	          $('#togg').text('show footer');
+	      }
+	       else {
+	          e.style.display = 'block';
+	          $('#togg').text('hide footer');
+	      }
+	    }
+	//-->
+	</script>
+	<script type="text/javascript"
+		src="js/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			$('a[href*=#]:not([href=#])').click(function() {
+				if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+					var target = $(this.hash);
+					target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+					if (target.length) {
+						$('html,body').animate({
+							scrollTop : target.offset().top
+						}, 1000);
+						return false;
+					}
+				}
+			});
+		});
+	</script>
+	<script src="js/stickUp.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		//initiating jQuery
+		jQuery(function($) {
+			$(document).ready(function() {
+				//enabling stickUp on the '.navbar-wrapper' class
+				$('.mWrapper').stickUp();
+			});
+		});
+	</script>
+
+</body>
+<script type='text/javascript' src='js/logging.js'></script>
+<div style="display:none">
+	<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
+		language='JavaScript' charset='gb2312'></script>
+</div>
+</html>

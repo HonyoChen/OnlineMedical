@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>异常事件补充记录</title>
+<meta name="keywords"
+	content="sand paper, free css template, web design, one page, templatemo" />
+<meta name="description"
+	content="Sand Paper is one-page free CSS Template from www.cssmoban.com" />
+<link href="test/css/templatemo_style.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- Arquivos utilizados pelo jQuery lightBox plugin -->
+<script type="text/javascript" src="../pages/test/js/jquery.js"></script>
+<script type="text/javascript"
+	src="../pages/test/js/jquery.lightbox-0.5.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="test/css/jquery.lightbox-0.5.css" media="screen" />
+
+<link href="test/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="../css/layer.css" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script> 
+<script type="text/javascript" src="../js/layer.js"></script>
+<script type="text/javascript" src="../js/laypage.js"></script>	
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/laypage.js"></script>
+<script type="text/javascript" src="../js/H-ui.min.js"></script>
+<script type="text/javascript" src="../js/H-ui.admin.js"></script>
+<script type="text/javascript" src="../js/laypage.js"></script>
+<script type="text/javascript">
+		var obj;
+		$(document).ready(function() {
+			var param = decodeURI(window.location.href);
+			var index = param.indexOf('obj=');
+			obj = JSON.parse(param.substr(index + 4));
+			//id\time\
+			var time = getDateStr(obj["time"].time);
+			document.getElementById('time').innerHTML = time;
+		});
+	
+		function getDateStr(seconds) {
+			var date = new Date(seconds)
+			var year = date.getFullYear();
+			var month = date.getMonth() + 1;
+			var day = date.getDate();
+			var hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+			var minute = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+			var second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+			var currentTime = year + "-" + month + "-" + day + "  " + hour + ":" + minute + ":" + second;
+			return currentTime
+		}
+	</script>
+</head>
+<body>
+	<span id="top"></span>
+	<div id="templatemo_wrapper">
+		<div id="templatemo_header">
+			<div id="site_title">
+				<h1>
+					<a href="#">Free CSS Templates</a>
+				</h1>
+			</div>
+			<div id="templatemo_menu">
+				<ul>
+					<li><a href="#home">异常事件</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="templatemo_main">
+			<div id="home"></div>
+			<div class="content_box_top"></div>
+			<div class="content_box">
+				<h2>补充异常事件记录</h2>
+				<div class="col-md-12">
+					<div class="form-group" style="height: 30px;">
+						<label class="col-sm-2 control-label">发作时间：</label>
+						&nbsp;&nbsp;&nbsp; <span id='time'></span>
+					</div>
+					<div class="form-group" style="height: 30px;">
+						<label class="col-sm-2 control-label">发作先兆：</label>
+						<div class="col-sm-7" style="width:40%">
+							<select class="form-control" id="onset" onchange="zzz();">
+								<option value="">--请选择--</option>
+								<option value="0">精神运动型</option>
+								<option value="1">躯体感觉型</option>
+								<option value="2">情绪先兆</option>
+								<option value="3">五官先兆</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group" style="height: 30px;">
+						<label class="col-sm-2 control-label">诱发因素：</label>
+						<div class="col-sm-7" style="width:40%">
+							<select class="form-control" id="factor" onchange="zz();">
+								<option value="">--请选择--</option>
+								<option value="0">不规范服用抗痫性药物</option>
+								<option value="1">发热/感染</option>
+								<option value="2">疲劳/劳累</option>
+								<option value="3">饮酒/酒精戒断</option>
+								<option value="4">妊娠及分娩</option>
+								<option value="5">停用镇静剂</option>
+								<option value="6">服用其他药品</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group" style="height: 30px;">
+						<label class="col-sm-2 control-label">发作状态：</label>
+						<div class="col-sm-7" style="width:40%">
+							<select class="form-control" id="state" ; onChange="query();z();">
+								<option value="">--请选择--</option>
+								<option value="0">全面发作状态</option>
+								<option value="1">部分发作状态</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group" style="height: 30px;">
+						<label class="col-sm-2 control-label">发作症状：</label>
+						<div class="col-sm-7" style="width:40%;">
+							<select class="form-control" id="status" disabled="disabled">
+								<option value="">--请选择--</option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+				<div class="cleaner h30" id="fbxz"
+					style="margin-left:28px;height:80px;">
+					<p id="0" style="display:none;">
+						<strong>注：</strong>诱发因素包括不规范服用抗痫性药物、发热/感染、疲劳/劳累、饮酒/酒精戒断、妊娠及分娩、停用镇静剂、服用其他药品等
+					</p>
+					<p id="1" style="display:none;">
+						<strong>注：</strong>发作状态主要分为全面性发作状态和部分性发作状态
+					</p>
+					<p id="2" style="display:none;">
+						<strong>注：</strong>全面性发作状态包括全面性强直-阵挛发作持续状态、强直性发作持续状态、阵挛性发作持续状态、肌阵挛发作持续状态、失神发作持续状态
+					</p>
+					<p id="3" style="display:none;">
+						<strong>注：</strong>部分性发作状态包括单纯部分性运动发作持续状态、边缘叶性癫痫状态、偏侧抽搐状态伴偏侧轻瘫、自动症持续状态
+					</p>
+					<p id="4">
+						<strong>注：</strong><span>发作先兆的精神运动性发病症状指大发作前数秒钟内病人出现的错觉、幻觉、自动症、局部肌阵挛或其它特殊感觉等</span>
+						<span>躯体感觉性发病症状如肢体麻木、刺痛等；肌肉或肌群的颤动、发声或咀嚼、头眼转向一侧等；心悸、气短、呼吸窘迫、出汗、脸红、胃肠不适等</span><span>情绪先兆发病症状包括焦虑、不安、压抑、惊恐等，恐惧是最常见的一种，错觉、幻觉、看见了或感到了实际上不存在的东西和场景等</span>
+						<span>五官先兆发病症状包括看见运动或静止的光点、光圈、火星、黑点、一团单色或彩色的东西等。</span>
+					</p>
+				</div>
+				<div class="cleaner h30"></div>
+				<a class="gototop" href="javascript:;" onclick="submit()">保存返回</a>
+				<div class="cleaner"></div>
+			</div>
+			<div class="content_box_bottom"></div>
+		</div>
+		</div>
+		<script type="text/javascript">
+			function submit(){
+		layer.confirm('确认要补充异常？', function(index) {
+				$.ajax({
+					url : "saveExstatistic",
+					type : "POST",
+					data : {
+						"eid" : obj.id,
+						"onset" : $('#onset option:selected').val(),
+						"factor" : $('#factor option:selected').val(),
+						"state" : $('#state option:selected').val(),
+						"status" : $('#status option:selected').val()
+					},
+					async: false,
+					dataType : "json",
+					success : function(result) {
+						layer.alert('补充成功!',{
+								icon:1,
+								yes:function(){
+						            window.location.href = "data_listen.jsp";
+						            		}
+							});
+							//window.location.reload();
+					},
+					error : function(result) {
+						layer.alert('补充失败!请刷新重试',{
+								icon:2,
+								yes:function(){
+									window.location.reload();
+								}
+							});
+						},
+					});
+				});	
+			}
+			 
+			function query() {
+				var stateSelected = $('#state option:selected').val();
+				if(stateSelected == ""){
+					$("#status").empty();
+					$("#status").append("<option value=''>--请选择--</option>");
+					$("#status").attr("disabled","disabled");
+				}else if(stateSelected == 0){
+					$("#status").removeAttr("disabled");
+					$("#status").empty();
+					$("#status").append("<option value=''>--请选择--</option>");
+					$("#status").append("<option value='0'>全面性强直-阵挛发作持续状态</option>");
+					$("#status").append("<option value='1'>强直性发作持续状态</option>");
+					$("#status").append("<option value='2'>阵挛性发作持续状态</option>");
+					$("#status").append("<option value='3'>肌阵挛发作持续状态</option>");
+					$("#status").append("<option value='4'>失神发作持续状态</option>");
+				}else if(stateSelected == 1){
+					$("#status").removeAttr("disabled");
+					$("#status").empty();
+					$("#status").append("<option value=''>--请选择--</option>");
+					$("#status").append("<option value='0'>单纯部分性运动发作持续状态</option>");
+					$("#status").append("<option value='1'>边缘叶性癫痫状态</option>");
+					$("#status").append("<option value='2'>偏侧抽搐状态伴偏侧轻瘫</option>");
+					$("#status").append("<option value='3'>自动症持续状态</option>");
+				}
+			}
+			
+			function zzz() {
+				if (document.getElementById("onset").value != 'null') {
+					document.getElementById("1").style.display = 'none';
+					document.getElementById("2").style.display = 'none'; 
+					document.getElementById("4").style.display = 'none'; 
+					document.getElementById("3").style.display = 'none';
+					document.getElementById("0").style.display = '';
+				} 
+			}
+			function zz() {
+				if (document.getElementById("factor").value != 'null'){
+					 document.getElementById("0").style.display = 'none';
+					document.getElementById("2").style.display = 'none';
+					document.getElementById("3").style.display = 'none';
+					document.getElementById("4").style.display = 'none'; 
+					document.getElementById("1").style.display = '';
+				} 
+			}
+			function z() {
+				if (document.getElementById("state").value == '0'){
+					document.getElementById("0").style.display = 'none';
+					document.getElementById("1").style.display = 'none';
+					document.getElementById("3").style.display = 'none';
+					document.getElementById("4").style.display = 'none'; 
+					document.getElementById("2").style.display = '';
+				} else if (document.getElementById("state").value == '1'){
+					document.getElementById("0").style.display = 'none';
+					document.getElementById("1").style.display = 'none';
+					document.getElementById("2").style.display = 'none';
+					document.getElementById("4").style.display = 'none'; 
+					document.getElementById("3").style.display = '';
+				} else{
+					document.getElementById("0").style.display = 'none';
+					document.getElementById("1").style.display = 'none';
+					document.getElementById("2").style.display = '';
+					document.getElementById("4").style.display = 'none'; 
+					document.getElementById("3").style.display = '';
+				}
+			}
+		</script>
+</body>
+</html>

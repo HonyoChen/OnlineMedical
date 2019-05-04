@@ -1,0 +1,170 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="../favicon.ico" >
+<link rel="Shortcut Icon" href="../favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="../css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="../js/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="../css/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="../css/style2.css" />
+<link rel="stylesheet" type="text/css" href="../css/layer.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="../js/jquery.min.js"></script> 
+<script type="text/javascript" src="../js/layer.js"></script>
+<script type="text/javascript" src="../js/H-ui.min.js"></script> 
+<script type="text/javascript" src="../js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本--> 
+<script type="text/javascript" src="../js/WdatePicker.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.js"></script> 
+<script type="text/javascript" src="../js/validate-methods.js"></script> 
+<script type="text/javascript" src="../js/messages_zh.js"></script>
+<script type="text/javascript">
+   function formsSubmit(){
+    	/* alert("开始提交表单"); */
+    	document.getElementById("userinfoForm").submit();
+    	window.close();
+    	//document.getElementById("userprofileForm").submit();
+    	//document.getElementById("contactForm").submit();
+    }
+
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	$("#form-member-add").validate({
+		rules:{
+			username:{
+				required:true,
+				minlength:2,
+				maxlength:16
+			},
+			sex:{
+				required:true,
+			},
+			mobile:{
+				required:true,
+				isMobile:true,
+			},
+			email:{
+				required:true,
+				email:true,
+			},
+			uploadfile:{
+				required:true,
+			},
+			
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			//$(form).ajaxSubmit();
+			var index = parent.layer.getFrameIndex(window.name);
+			//parent.$('.btn-refresh').click();
+			parent.layer.close(index);
+		}
+	});
+});
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+
+
+<title>添加医生</title>
+<meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+<meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+</head>
+<body>
+<article class="page-container">
+	<form action="addDoctorAccount" method="post" class="form form-horizontal" id="userinfoForm" namespace="/pages"  target="_parent" >
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" style="width:300px;"  class="input-text" value="" placeholder="" id="username" name="username">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" style="width:300px;" class="input-text" value="" placeholder="" id="phone" name="phone">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>邮箱：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" style="width:300px;"  class="input-text" placeholder="@" name="email" id="email">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>科室：</label>
+		        <select class="input-text" type="text"  style="width:300px;margin-left:18px;" id ="department" name ="department"  >
+					<option value="-1">请选择</option>
+					<option value="0">内科</option>
+					<option value="1">外科</option>
+					<option value="2">妇产科</option>
+				    <option value="3">男科</option>
+					<option value="4">儿科</option>
+					<option value="5">五官科</option>
+					<option value="6">肿瘤科</option>
+					<option value="7">皮肤性病科</option>
+					<option value="8">中医科</option>
+				    <option value="9">传染科</option>
+					<option value="10">精神心理科</option>
+					<option value="11">整形美容科</option>
+				    <option value="12">营养科</option>
+					<option value="13">生殖中心</option>
+					<option value="14">麻醉医学科</option>
+					<option value="15">医学影像科</option>
+					<option value="16">其他科室</option>
+				</select>
+			</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>职称：</label>
+			<select class="input-text" type="text" style="width:300px;margin-left:18px;" id = "title" name ="title">
+				<option value="-1">请选择</option>  
+				<option value="0">医师</option>  
+				<option value="1">主治医师</option>
+				<option value="2">副主任医师</option>
+				<option value="3">主任医师</option>
+			</select>
+			<!-- <div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="@" name="email" id="email">
+			</div> -->
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<!-- <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;新增&nbsp;&nbsp;"> -->
+				
+				<button class="btn btn-primary radius" style="width:100px;" onclick="formsSubmit()">
+                 <a  onclick="formsSubmit();"><h8 class="title"> &nbsp;&nbsp;新增&nbsp;&nbsp;<!-- </h8></a> -->
+                 </button> 
+				
+				
+			</div>
+		</div>
+	</form>
+</article>
+
+</body>
+</html>

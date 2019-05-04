@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Bootstrap Material Admin by Bootstrapious.com</title>
+<meta name="description" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="all,follow">
+<!-- Bootstrap CSS-->
+<link rel="stylesheet"
+	href="../chartsstyle/vendor/bootstrap/css/bootstrap.min.css">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet"
+	href="../chartsstyle/vendor/font-awesome/css/font-awesome.min.css">
+<!-- Fontastic Custom icon font-->
+<link rel="stylesheet" href="../chartsstyle/css/fontastic.css">
+<!-- Google fonts - Poppins -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+<!-- theme stylesheet-->
+<link rel="stylesheet" href="../chartsstyle/css/style.default.css"
+	id="theme-stylesheet">
+<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet" href="../chartsstyle/css/custom.css">
+<!-- Favicon-->
+<link rel="shortcut icon" href="../chartsstyle/img/favicon.ico">
+<!-- Tweaks for older IEs-->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<body>
+	<div class="page" style="width:100%;">
+
+		<div style="width:100%;"
+			class="page-content d-flex align-items-stretch">
+
+			<div class="content-inner" style="width:100%;">
+	
+				<div class="breadcrumb-holder container-fluid">
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a href="charts.html">聚类结果展示</a></li>
+						<li class="breadcrumb-item active">心脏病和帕金森病聚类结果</li>
+					</ul>
+				</div>
+				<!-- Charts Section-->
+				<section class="charts">
+					<div class="container-fluid">
+						<div class="row">
+							<!-- Line Charts-->
+							<div class="col-lg-8">
+								<div class="line-chart-example card"
+									style="width:1220px;height:250px;">
+									<div class="card-close">
+										<div class="dropdown">
+											<button type="button" id="closeCard1" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false"
+												class="dropdown-toggle">
+												<i class="fa fa-ellipsis-v"></i>
+											</button>
+											<div aria-labelledby="closeCard1"
+												class="dropdown-menu dropdown-menu-right has-shadow">
+												<a href="#" class="dropdown-item remove"> <i
+													class="fa fa-times"></i>Close
+												</a><a href="#" class="dropdown-item edit"> <i
+													class="fa fa-gear"></i>Edit
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="card-header d-flex align-items-center" >
+										<h3 class="h4">项目数据集简介</h3>
+									</div>
+									<div class="card-body" >
+										<!-- <canvas  style="height:400px;" id="lineChartExample" ></canvas> -->
+										<br />
+										<p>本项目以心脏病（Heart Disease DataSet）和帕金森病（Parkinson's Disease）两种疾病数据集为测试数据集，其中心脏病数据集实例数303，包含静息血压、血清胆固醇、空腹血糖、吸烟年数、静息心电图、运动心电图等属性，根据这些属性对患者不同年龄、不同性别的患者数据进行聚类分析，将患者归属于非心痛类型、典型心绞痛、非典型心绞痛、非心绞痛、无症状等五种类型。其聚类结果如上图所示！
+										帕金森病数据集包含756个实例，通过此数据聚类分析，判断患者是否患有帕金森病。本项目展示对这两个数据集的聚类结果以及在不同实例数量情况下聚类结果的准确率！</p>
+									</div>
+
+								</div>
+							</div>
+							<div class="col-lg-4">
+
+							</div>
+							<!-- Bar Charts-->
+							<div class="col-lg-4">
+								<div class="bar-chart-example card no-margin-bottom">
+									<div class="card-close">
+										<div class="dropdown">
+											<button type="button" id="closeCard4" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false"
+												class="dropdown-toggle">
+												<i class="fa fa-ellipsis-v"></i>
+											</button>
+											<div aria-labelledby="closeCard4"
+												class="dropdown-menu dropdown-menu-right has-shadow">
+												<a href="#" class="dropdown-item remove"> <i
+													class="fa fa-times"></i>Close
+												</a><a href="#" class="dropdown-item edit"> <i
+													class="fa fa-gear"></i>Edit
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="card-header d-flex align-items-center">
+										<h3 class="h4">心脏病真实标签结果</h3>
+									</div>
+									<div class="card-body" style="height:420px;">
+										<canvas id="barChart2" style="height:400px;margin-top:60px;"></canvas>
+									</div>
+								</div>
+							<!-- 	<div class="line-chart-example card" style="height:400px;">
+									<div class="card-close" style="height:400px;">
+										<div class="dropdown" style="height:400px;">
+											<button type="button" id="closeCard5" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false"
+												class="dropdown-toggle">
+												<i class="fa fa-ellipsis-v"></i>
+											</button>
+											<div  aria-labelledby="closeCard5"
+												class="dropdown-menu dropdown-menu-right has-shadow">
+												<a href="#" class="dropdown-item remove"> <i
+													class="fa fa-times"></i>Close
+												</a><a href="#" class="dropdown-item edit"> <i
+													class="fa fa-gear"></i>Edit
+												</a>
+											</div>
+										</div>
+									</div>
+									
+								</div> -->
+							</div>
+							<div class="col-lg-8">
+								<div class="bar-chart-example card">
+									<div class="card-close">
+										<div class="dropdown">
+											<button type="button" id="closeCard6" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false"
+												class="dropdown-toggle">
+												<i class="fa fa-ellipsis-v"></i>
+											</button>
+											<div aria-labelledby="closeCard6"
+												class="dropdown-menu dropdown-menu-right has-shadow">
+												<a href="#" class="dropdown-item remove"> <i
+													class="fa fa-times"></i>Close
+												</a><a href="#" class="dropdown-item edit"> <i
+													class="fa fa-gear"></i>Edit
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="card-header d-flex align-items-center">
+										<h3 class="h4">心脏病聚类柱状图</h3>
+									</div>
+									<div class="card-body">
+										<canvas id="barChartExample"></canvas>
+									</div>
+								</div>
+							</div>
+							<!-- Doughnut Chart -->
+							<div class="line-chart-example card no-margin-bottom"  style="margin-left:16px;width:385px;height:298px;">
+                    <div class="card-close">
+                      <div class="dropdown">
+                        <button type="button" id="closeCard2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard2" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                      </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center" style="width:385px;">
+                      <h3 class="h4">帕金森聚类柱状图</h3>
+                    </div>
+                    <div class="card-body" id="parjin">
+                     <!--  <canvas id="lineChartExample1" ></canvas> -->
+                     	<script src="echarts.min.js" charset="utf-8"
+											type="text/javascript"></script>
+										<script type="text/javascript">
+                      					var myChart = echarts.init(document.getElementById('parjin'));//误差图
+										option = {
+											    legend: {},
+											    tooltip: {},
+											    dataset: {
+											        dimensions: ['product', '真实标签', '聚类标签'],
+											        source: [
+											            {product: '患帕金森病', '真实标签':534, '聚类标签': 565, },
+											            {product: '不患帕金森病','真实标签': 165, '聚类标签': 134, },
+							
+											        ]
+											    },
+											    xAxis: {type: 'category'},
+											    yAxis: {},
+											    series: [
+											        {type: 'bar'},
+											        {type: 'bar'},
+											    ]
+											};	
+										myChart.setOption(option);						                      
+                      
+                                     </script>
+                     
+                    </div>
+                  </div>
+                
+							<!-- Pie Chart -->
+							<div class="col-lg-6" style="width:800px;">
+								<div class="pie-chart-example card"
+									style=" margin-left:18px;width:800px;">
+									<div class="card-close">
+										<div class="dropdown">
+											<button type="button" id="closeCard8" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false"
+												class="dropdown-toggle">
+												<i class="fa fa-ellipsis-v"></i>
+											</button>
+											<div aria-labelledby="closeCard8"
+												class="dropdown-menu dropdown-menu-right has-shadow">
+												<a href="#" class="dropdown-item remove"> <i
+													class="fa fa-times"></i>Close
+												</a><a href="#" class="dropdown-item edit"> <i
+													class="fa fa-gear"></i>Edit
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="card-header d-flex align-items-center">
+										<h3 class="h4">帕金森病聚类饼图</h3>
+									</div>
+									<div class="card-body">
+										<canvas id="doughnutChartExample"
+											style="float:left;margin-left:30px;"></canvas>
+										<canvas id="pieChartExample"
+											style="float:right;margin-right:30px;"></canvas>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-8">
+								<div class="line-chart-example card"
+									style="width:570px;height:400px;">
+									<div class="card-close">
+										<div class="dropdown">
+											<button type="button" id="closeCard1" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false"
+												class="dropdown-toggle">
+												<i class="fa fa-ellipsis-v"></i>
+											</button>
+											<div aria-labelledby="closeCard1"
+												class="dropdown-menu dropdown-menu-right has-shadow">
+												<a href="#" class="dropdown-item remove"> <i
+													class="fa fa-times"></i>Close
+												</a><a href="#" class="dropdown-item edit"> <i
+													class="fa fa-gear"></i>Edit
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="card-header d-flex align-items-center">
+										<h3 class="h4">心脏病聚类准确率</h3>
+									</div>
+									<div class="card-body" id="hearterror">
+										<!-- <canvas  style="height:400px;" id="lineChartExample" ></canvas> -->
+										<script src="echarts.min.js" charset="utf-8"
+											type="text/javascript"></script>
+										<script type="text/javascript">
+                      					var myChart = echarts.init(document.getElementById('hearterror'));//误差图
+										 option = {
+										    title: {
+										        text: '',
+										    },
+										    tooltip: {
+										        trigger: 'axis'
+										    },
+										    legend: {
+										        data:['最高准确率']
+										    },
+										    toolbox: {
+										        show: true,
+										        feature: {
+										            dataZoom: {
+										                yAxisIndex: 'none'
+										            },
+										            dataView: {readOnly: false},
+										            magicType: {type: ['line', 'bar']},
+										            restore: {},
+										            saveAsImage: {}
+										        }
+										    },
+										    xAxis:  {
+										        type: 'category',
+										        name:'实例数',
+										        boundaryGap: false,
+										        data: ['49','99','149','199','249','299']
+										    },
+										    yAxis: {
+										        type: 'value',
+										         name:'准确率',
+										        axisLabel: {
+										            formatter: '{value}'
+										        }
+										    },
+										    series: [
+										        {
+										           
+										            type:'line',
+										            data:[0.35,0.46,0.54,0.66,0.82,0.89],
+										            markPoint: {
+										                data: [
+										                    {type: 'max', name: '最大值'},
+										                    {type: 'min', name: '最小值'}
+										                ]
+										            },
+										            markLine: {
+										                data: [
+										                    {type: 'average', name: '平均值'}
+										                ]
+										            }
+										        },
+										
+										    ]
+										};	
+										myChart.setOption(option);						                      
+                      
+                                     </script>
+
+
+
+
+									</div>
+
+								</div>
+							</div>
+
+
+							<div class="col-lg-8"
+								style="margin-left:600px;margin-right:-100px;">
+								<div class="line-chart-example card"
+									style="margin-top:-430px;width:610px;height:400px;">
+									<div class="card-close">
+										<div class="dropdown">
+											<button type="button" id="closeCard1" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false"
+												class="dropdown-toggle">
+												<i class="fa fa-ellipsis-v"></i>
+											</button>
+											<div aria-labelledby="closeCard1"
+												class="dropdown-menu dropdown-menu-right has-shadow">
+												<a href="#" class="dropdown-item remove"> <i
+													class="fa fa-times"></i>Close
+												</a><a href="#" class="dropdown-item edit"> <i
+													class="fa fa-gear"></i>Edit
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="card-header d-flex align-items-center">
+										<h3 class="h4">帕金森病聚类准确率</h3>
+									</div>
+									<div class="card-body" id="parkinsonerror">
+										<!-- <canvas  style="height:400px;" id="lineChartExample" ></canvas> -->
+									<script src="echarts.min.js" charset="utf-8"
+											type="text/javascript"></script>
+										<script type="text/javascript">
+                      					var myChart = echarts.init(document.getElementById('parkinsonerror'));//误差图
+										 option = {
+										    title: {
+										        text: '',
+										    },
+										    tooltip: {
+										        trigger: 'axis'
+										    },
+										    legend: {
+										        data:['最高准确率']
+										    },
+										    toolbox: {
+										        show: true,
+										        feature: {
+										            dataZoom: {
+										                yAxisIndex: 'none'
+										            },
+										            dataView: {readOnly: false},
+										            magicType: {type: ['line', 'bar']},
+										            restore: {},
+										            saveAsImage: {}
+										        }
+										    },
+										    xAxis:  {
+										        type: 'category',
+										        name:'实例数',
+										        boundaryGap: false,
+										        data: ['99','199','299','399','499','599','699']
+										    },
+										    yAxis: {
+										        type: 'value',
+										        name:'准确率',
+										        axisLabel: {
+										            formatter: '{value}'
+										        }
+										    },
+										    series: [
+										        {
+										           // name:'最高NMI',
+										            type:'line',
+										            data:[0.73,0.61,0.65,0.86,0.89,0.86,0.91],
+										            markPoint: {
+										                data: [
+										                    {type: 'max', name: '最大值'},
+										                    {type: 'min', name: '最小值'}
+										                ]
+										            },
+										            markLine: {
+										                data: [
+										                    {type: 'average', name: '平均值'}
+										                ]
+										            }
+										        },
+										
+										    ]
+										};	
+										myChart.setOption(option);						                      
+                      
+                                     </script>
+									
+									
+									</div>
+
+								</div>
+							</div>
+
+
+
+						</div>
+				</section>
+
+			</div>
+		</div>
+	</div>
+	<!-- JavaScript files-->
+	<script src="../chartsstyle/vendor/jquery/jquery.min.js"></script>
+	<script src="../chartsstyle/vendor/popper.js/umd/popper.min.js"> </script>
+	<script src="../chartsstyle/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../chartsstyle/vendor/jquery.cookie/jquery.cookie.js"> </script>
+	<script src="../chartsstyle/vendor/chart.js/Chart.min.js"></script>
+	<script
+		src="../chartsstyle/vendor/jquery-validation/jquery.validate.min.js"></script>
+	<script src="../chartsstyle/js/charts-custom.js"></script>
+	<!-- Main File-->
+	<script src="../chartsstyle/js/front.js"></script>
+</body>
+</html>

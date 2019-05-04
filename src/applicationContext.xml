@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd" xmlns:tx="http://www.springframework.org/schema/tx">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/om?useUnicode=true&amp;characterEncoding=UTF8">
+		</property>
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					<!-- org.hibernate.dialect.MySQLDialect -->
+					com.cn.Util.MyLocalDialect
+				</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<!-- <prop key="hibernate.current_session_context_class"> 
+    				thread 
+    			</prop> -->
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/cn/POJO/User.hbm.xml</value>
+				<value>com/cn/POJO/Patient.hbm.xml</value>
+				<value>com/cn/POJO/Doctor.hbm.xml</value>
+				<value>com/cn/POJO/Dandp.hbm.xml</value>
+				<value>com/cn/POJO/Mrecord.hbm.xml</value>
+				<value>com/cn/POJO/Article.hbm.xml</value>
+				<value>com/cn/POJO/Comment.hbm.xml</value>
+				<value>com/cn/POJO/Message.hbm.xml</value>
+				<value>com/cn/POJO/Cfile.hbm.xml</value>
+				<!-- <value>com/cn/POJO/Exrecord.hbm.xml</value> -->
+				<value>com/cn/POJO/Exstatistic.hbm.xml</value>
+				<value>com/cn/POJO/Exrecord.hbm.xml</value></list>
+		</property></bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- <tx:advice transaction-manager="transactionManager" id="tx">
+        <tx:attributes>
+            <tx:method name="save*" read-only="false" />
+            <tx:method name="update*" read-only="false" />
+            <tx:method name="delete*" read-only="false" />
+            <tx:method name="*" read-only="true" />
+        </tx:attributes>
+    </tx:advice> -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!-- Bean DAO注入 -->
+	<bean id="baseDAO" class="com.cn.DAO.BaseDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	<bean id="UserDAO" class="com.cn.DAO.Impl.UserDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="PatientDAO" class="com.cn.DAO.Impl.PatientDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="DoctorDAO" class="com.cn.DAO.Impl.DoctorDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="DandpDAO" class="com.cn.DAO.Impl.DandpDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="MessageDAO" class="com.cn.DAO.Impl.MessageDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="MrecordDAO" class="com.cn.DAO.Impl.MrecordDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="ArticleDAO" class="com.cn.DAO.Impl.ArticleDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="CommentDAO" class="com.cn.DAO.Impl.CommentDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="CfileDAO" class="com.cn.DAO.Impl.CfileDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="ExrecordDAO" class="com.cn.DAO.Impl.ExrecordDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="ExstatisticDAO" class="com.cn.DAO.Impl.ExstatisticDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- Service注入 -->
+	<bean id="UserService" class="com.cn.Service.UserService">
+		<property name="userDAO" ref="UserDAO"></property>
+	</bean>
+	<bean id="PatientService" class="com.cn.Service.PatientService">
+		<property name="patientDAO" ref="PatientDAO"></property>
+	</bean>
+	<bean id="DoctorService" class="com.cn.Service.DoctorService">
+		<property name="doctorDAO" ref="DoctorDAO"></property>
+	</bean>
+	<bean id="DandpService" class="com.cn.Service.DandpService">
+		<property name="dandpDAO" ref="DandpDAO"></property>
+	</bean>
+	<bean id="MessageService" class="com.cn.Service.MessageService">
+		<property name="messageDAO" ref="MessageDAO"></property>
+	</bean>
+	<bean id="MrecordService" class="com.cn.Service.MrecordService">
+		<property name="mrecordDAO" ref="MrecordDAO"></property>
+	</bean>
+	<bean id="ArticleService" class="com.cn.Service.ArticleService">
+		<property name="articleDAO" ref="ArticleDAO"></property>
+	</bean>
+	<bean id="CommentService" class="com.cn.Service.CommentService">
+		<property name="commentDAO" ref="CommentDAO"></property>
+	</bean>
+	<bean id="CfileService" class="com.cn.Service.CfileService">
+		<property name="cfileDAO" ref="CfileDAO"></property>
+	</bean>
+	<bean id="ExrecordService" class="com.cn.Service.ExrecordService">
+		<property name="exrecordDAO" ref="ExrecordDAO"></property>
+	</bean>
+	<bean id="ExstatisticService" class="com.cn.Service.ExstatisticService">
+		<property name="exstatisticDAO" ref="ExstatisticDAO"></property>
+	</bean>
+	
+	<!-- Action注入 -->
+	<bean id="UserAction" class="com.cn.Action.UserAction" scope="prototype">
+		<property name="userService" ref="UserService"></property>
+		<property name="patientService" ref="PatientService"></property>
+		<property name="doctorService" ref="DoctorService"></property>
+		<property name="dandpService" ref="DandpService"></property>
+		<property name="messageService" ref="MessageService"></property>
+		<property name="mrecordService" ref="MrecordService"></property>
+	</bean>
+	<bean id="EnterAction" class="com.cn.Action.EnterAction" scope="prototype"></bean>
+	<bean id="UpdateAction" class="com.cn.Action.UpdateAction" scope="prototype">
+		<property name="userService" ref="UserService"></property>
+		<property name="patientService" ref="PatientService"></property>
+		<property name="doctorService" ref="DoctorService"></property>
+	</bean>
+	<bean id="DoctorAction" class="com.cn.Action.DoctorAction" scope="prototype">
+		<property name="doctorService" ref="DoctorService"></property>
+		<property name="dandpService" ref="DandpService"></property>
+	</bean>
+	<bean id="PatientAction" class="com.cn.Action.PatientAction" scope="prototype">
+		<property name="patientService" ref="PatientService"></property>
+		<property name="doctorService" ref="DoctorService"></property>
+		<property name="dandpService" ref="DandpService"></property>
+	</bean>
+	<bean id="MessageAction" class="com.cn.Action.MessageAction" scope="prototype">
+		<property name="userService" ref="UserService"></property>
+		<property name="messageService" ref="MessageService"></property>
+	</bean>
+	<bean id="MrecordAction" class="com.cn.Action.MrecordAction" scope="prototype">
+		<property name="userService" ref="UserService"></property>
+		<property name="patientService" ref="PatientService"></property>
+		<property name="doctorService" ref="DoctorService"></property>
+		<property name="mrecordService" ref="MrecordService"></property>
+		<property name="dandpService" ref="DandpService"></property>
+	</bean>
+	<bean id="UploadAction" class="com.cn.Action.UploadAction" scope="prototype">
+		<property name="userService" ref="UserService"></property>
+		<property name="articleService" ref="ArticleService"></property>
+	</bean>
+	<bean id="ArticleAction" class="com.cn.Action.ArticleAction" scope="prototype">
+		<property name="articleService" ref="ArticleService"></property>
+		<property name="commentService" ref="CommentService"></property>
+	</bean>
+	<bean id="CommentAction" class="com.cn.Action.CommentAction" scope="prototype">
+		<property name="commentService" ref="CommentService"></property>
+		<property name="userService" ref="UserService"></property>
+		<property name="articleService" ref="ArticleService"></property>
+	</bean>
+	<bean id="CfileAction" class="com.cn.Action.CfileAction" scope="prototype">
+		<property name="cfileService" ref="CfileService"></property>
+		<property name="userService" ref="UserService"></property>
+	</bean>
+	<bean id="DownloadAction" class="com.cn.Action.DownloadAction" scope="prototype">
+		<property name="cfileService" ref="CfileService"></property>
+	</bean>
+	<bean id="ExrecordAction" class="com.cn.Action.ExrecordAction" scope="prototype">
+		<property name="exrecordService" ref="ExrecordService"></property>
+		<property name="dandpService" ref="DandpService"></property>
+	</bean>
+	<bean id="ExstatisticAction" class="com.cn.Action.ExstatisticAction" scope="prototype">
+		<property name="exstatisticService" ref="ExstatisticService"></property>
+		<property name="exrecordService" ref="ExrecordService"></property>
+	</bean>
+	
+	<bean id="UtilAction" class="com.cn.Action.UtilAction" scope="prototype">
+	</bean>
+	
+	</beans>

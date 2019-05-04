@@ -1,0 +1,595 @@
+
+
+ <!DOCTYPE html>
+<html>
+<head>
+<title>训练模型</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png" sizes="16x16"
+	href="../assets2/images/favicon.png">
+<title>统计报告</title>
+<!-- Bootstrap Core CSS -->
+<link href="../assets2/plugins/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- chartist CSS -->
+<link href="../assets2/plugins/chartist-js/dist/chartist.min.css"
+	rel="stylesheet">
+<link href="../assets2/plugins/chartist-js/dist/chartist-init.css"
+	rel="stylesheet">
+<link
+	href="../assets2/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css"
+	rel="stylesheet">
+<!--This page css - Morris CSS -->
+<link href="../assets2/plugins/c3-master/c3.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="../css/style3.css" rel="stylesheet">
+<!-- You can change the theme colors from here -->
+<link href="../css/blue.css" id="theme" rel="stylesheet">
+<link rel="icon" type="image/png" href="../dist/i/favicon.png">
+<link rel="apple-touch-icon-precomposed"
+	href="../dist/i/app-icon72x72@2x.png">
+<meta name="apple-mobile-web-app-title" content="demo" />
+<link rel="stylesheet" href="../dist/amazeui.min.css" />
+<link rel="stylesheet" href="../css/demo2.css" />
+<link rel="stylesheet" type="text/css"
+	href="../js/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="../css/H-ui.min.css" />
+<link href="<%=path%>/gystyle/authority/common_style.css" />
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+	<div id="main-wrapper">
+
+		<!-- <div class="page-wrapper">  -->
+		<div class="container-fluid">
+			<div class="row page-titles"
+				style="width: 1280px;height:60px;border-color: #ddd;background-color: #f5f5f5; text-align:center;">
+				<div class="col-md-5 col-8 align-self-center">
+					<!-- <strong style="margin-left:370px;position:relative;text-align:center;">实时数据体征图</strong> -->
+					<img src="../images/logo.png" alt="Logo"
+						style="margin-left:-320px;">
+				</div>
+
+			</div>
+			<div class="row">
+				<!-- Column -->
+				<div class="col-lg-8 col-md-7">
+					<div class="card">
+						<div class="card-block">
+							<div class="row">
+								<div class="col-12">
+									<div class="d-flex flex-wrap" id="count" style="height:400px; ">
+										
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-5">
+					<div class="card">
+						<div class="card-block" style="height:185px;">
+							<h3 style="text-align:center;"><font color="gray">周期内发病次数统计</font></h3>
+							<h4 class="card-title" style="line-height:30px;">分别统计一周、一个月、三个月、六个月和一年周期内的发病次数，
+							 显示病情严重程度。每位患者由于病情不同，其发作周期、频率也各不相同，有的一天发作数次、数十次，有的几个月甚至几年才发作一次。统计发病次数能够帮助患者掌握病情，更有针对性进行治疗。
+							</h4>
+							
+							<div id="visitor" style="height:290px; width:100%;"></div>
+						</div>
+						<div class="card-block text-center " id="message"
+							style="height:245px;text-align:center;">
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!-- Column -->
+				<div class="col-lg-8 col-md-7">
+					<div class="card">
+						<div class="card-block">
+							<div class="row">
+								<div class="col-12">
+									<div class="d-flex flex-wrap" id="onset" style="height:400px; ">
+										
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-5">
+					<div class="card">
+						<div class="card-block" style="height:185px;">
+							<h3 style="text-align:center;"><font color="gray">发病先兆统计</font></h3>
+							<h4 class="card-title" style="line-height:30px;">癫痫病发作往往不定时不定地，让患者及家属很是头疼，
+							也让很多癫痫患者不愿意出门，害怕癫痫在大庭广众之下发作。然而癫痫病在发作前是有一些症状的，患者在生活中注意自己身体变化，如果出现癫痫病发作先兆，应该告知家人做好癫痫发作护理准备。统计发病先兆，帮助患者及家属了解自身常见发病先兆，指导急救措施。
+							</h4>
+							
+							<div id="visitor" style="height:290px; width:100%;"></div>
+						</div>
+						<div class="card-block text-center " id="message"
+							style="height:245px;text-align:center;">
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!-- Column -->
+				<div class="col-lg-8 col-md-7">
+					<div class="card">
+						<div class="card-block">
+							<div class="row">
+								<div class="col-12">
+									<div class="d-flex flex-wrap" id="factor" style="height:400px; ">
+										
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-5">
+					<div class="card">
+						<div class="card-block" style="height:185px;">
+							<h3 style="text-align:center;"><font color="gray">发病诱因统计</font></h3>
+							<h4 class="card-title" style="line-height:30px;">癫痫可能会以自发不可预知的方式发作，
+							或是由不明的诱发因素导致癫痫发作，癫痫也可能是一些特在的因素出现癫痫发作的现象。统计发病诱因，指导患者健康作息，积极配合治疗癫痫病。
+							</h4>
+							
+							<div id="visitor" style="height:290px; width:100%;"></div>
+						</div>
+						<div class="card-block text-center " id="message"
+							style="height:245px;text-align:center;">
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!-- Column -->
+				<div class="col-lg-8 col-md-7">
+					<div class="card">
+						<div class="card-block">
+							<div class="row">
+								<div class="col-12">
+									<div class="d-flex flex-wrap" id="state" style="height:400px; ">
+										
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-5">
+					<div class="card">
+						<div class="card-block" style="height:185px;">
+							<h3 style="text-align:center;"><font color="gray">发病状态统计</font></h3>
+							<h4 class="card-title" style="line-height:30px;">癫痫持续状态（SE）或称癫痫状态，
+							是癫痫连续发作之间意识未完全恢复又频繁再发，或发作持续30分钟以上不自行停止。长时间癫痫发作，若不及时治疗，可因高热、循环衰竭或神经元兴奋毒性损伤导致不可逆的脑损伤，致残率和病死率很高，因而癫痫状态是内科常见的急症。统计癫痫发作状态，帮助患者及医生诊断及处理病情。
+							</h4>
+							
+							<div id="visitor" style="height:290px; width:100%;"></div>
+						</div>
+						<div class="card-block text-center " id="message"
+							style="height:245px;text-align:center;">
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			</div>
+
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script src="echarts.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function() {
+			//解析参数
+			var url = decodeURI(window.location.href);
+			var index = url.indexOf('?');
+			var params = url.substr(index + 1);
+			index = params.indexOf('=');
+			var PID = params.substr(index + 1);
+			
+			//初始化周期内发病次数Echarts
+			var chart1 = echarts.init(document.getElementById('count'));
+			//周期内发病次数获取数据并可视化
+			$.ajax({
+				url : "countsOnTimePeriod",
+				type : "POST",
+				data : {
+					"pid" : PID
+				},
+				//async: false,
+				dataType : "json",
+				success : function(result) {
+					var nums = [];
+					nums.push(result[0].week);
+					nums.push(result[0].month);
+					nums.push(result[0].quarter);
+					nums.push(result[0].semester);
+					nums.push(result[0].year);
+					// 指定图表的配置项和数据
+					var option_1 = {
+						title : {
+							text : ''
+						},
+						tooltip : {},
+						legend : {
+							data : [ '周期内发病次数' ]
+						},
+						xAxis : {
+							data : [ "一周", "一个月", "三个月", "六个月", "一年" ]
+						},
+						yAxis : {},
+						series : [ {
+							name : '发病次数',
+							type : 'bar',
+							data : nums
+						} ]
+					};
+					chart1.setOption(option_1);
+				},
+				error : function(result) {
+					alert("返回数据失败，请刷新页面");
+				}
+			});
+	
+			var chart2 = echarts.init(document.getElementById('onset')); //发作先兆
+			var chart3 = echarts.init(document.getElementById('factor')); //诱发因素
+			var chart4 = echarts.init(document.getElementById('state')); //发作状态
+			//查询剩下数据
+			$.ajax({
+				url : "returnStatictisResult",
+				type : "POST",
+				data : {
+					"pid" : PID
+				},
+				//async: false,
+				dataType : "json",
+				success : function(result) {
+					//alert(result.length);
+					var onsetData = [];
+					onsetData.push({
+						value : result['onset']['onset_0'],
+						name : '精神运动性'
+					});
+					onsetData.push({
+						value : result['onset']['onset_1'],
+						name : '躯体感觉性'
+					});
+					onsetData.push({
+						value : result['onset']['onset_2'],
+						name : '情绪先兆'
+					});
+					onsetData.push({
+						value : result['onset']['onset_3'],
+						name : '五官先兆'
+					});
+	
+					var option2 = {
+						tooltip : {
+							trigger : 'item',
+							formatter : "{a} <br/>{b}: {c} ({d}%)"
+						},
+						legend : {
+							orient : 'vertical',
+							x : 'left',
+							data : [ '精神运动性', '躯体感觉性', '情绪先兆', '五官先兆' ]
+						},
+						series : [
+							{
+								name : '数据详情',
+								type : 'pie',
+								selectedMode : 'single',
+								radius : [ 0, '30%' ],
+								label : {
+									normal : {
+										position : 'inner'
+									}
+								},
+								labelLine : {
+									normal : {
+										show : false
+									}
+								},
+							},
+							{
+								name : '数据详情',
+								type : 'pie',
+								radius : [ '40%', '55%' ],
+								label : {
+									normal : {
+										formatter : '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+										backgroundColor : '#eee',
+										borderColor : '#aaa',
+										borderWidth : 1,
+										borderRadius : 4,
+										rich : {
+											a : {
+												color : '#999',
+												lineHeight : 22,
+												align : 'center'
+											},
+											hr : {
+												borderColor : '#aaa',
+												width : '100%',
+												borderWidth : 0.5,
+												height : 0
+											},
+											b : {
+												fontSize : 16,
+												lineHeight : 33
+											},
+											per : {
+												color : '#eee',
+												backgroundColor : '#334455',
+												padding : [ 2, 4 ],
+												borderRadius : 2
+											}
+										}
+									}
+								},
+								data : onsetData
+							}
+						]
+					};
+					chart2.setOption(option2);
+	
+					var factorData = [];
+					factorData.push({
+						value : result['factor']['factor_0'],
+						name : '不规范服用抗癫痫药物'
+					});
+					factorData.push({
+						value : result['factor']['factor_1'],
+						name : '饮酒/酒精戒断'
+					});
+					factorData.push({
+						value : result['factor']['factor_2'],
+						name : '发热/感染'
+					});
+					factorData.push({
+						value : result['factor']['factor_3'],
+						name : '妊娠及分娩'
+					});
+					factorData.push({
+						value : result['factor']['factor_4'],
+						name : '疲劳/劳累'
+					});
+					factorData.push({
+						value : result['factor']['factor_5'],
+						name : '停用镇静剂'
+					});
+					factorData.push({
+						value : result['factor']['factor_6'],
+						name : '服用其他药品'
+					});
+					var option3 = {
+						tooltip : {
+							trigger : 'item',
+							formatter : "{a} <br/>{b}: {c} ({d}%)"
+						},
+						legend : {
+							orient : 'vertical',
+							x : 'left',
+							data : [ '不规范服用抗癫痫药物', '饮酒/酒精戒断', '发热/感染', '妊娠及分娩', '疲劳/劳累', '停用镇静剂', '服用其他药品' ]
+						},
+						series : [
+							{
+								name : '数据详情',
+								type : 'pie',
+								selectedMode : 'single',
+								radius : [ 0, '30%' ],
+	
+								label : {
+									normal : {
+										position : 'inner'
+									}
+								},
+								labelLine : {
+									normal : {
+										show : false
+									}
+								},
+							},
+							{
+								name : '数据详情',
+								type : 'pie',
+								radius : [ '40%', '55%' ],
+								label : {
+									normal : {
+										formatter : '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+										backgroundColor : '#eee',
+										borderColor : '#aaa',
+										borderWidth : 1,
+										borderRadius : 4,
+										rich : {
+											a : {
+												color : '#999',
+												lineHeight : 22,
+												align : 'center'
+											},
+											hr : {
+												borderColor : '#aaa',
+												width : '100%',
+												borderWidth : 0.5,
+												height : 0
+											},
+											b : {
+												fontSize : 16,
+												lineHeight : 33
+											},
+											per : {
+												color : '#eee',
+												backgroundColor : '#334455',
+												padding : [ 2, 4 ],
+												borderRadius : 2
+											}
+										}
+									}
+								},
+								data : factorData
+							}
+						]
+					};
+					chart3.setOption(option3);
+	
+					var stateData = [];
+					var state_0_statusData = [];
+					var state_1_statusData = [];
+					
+					stateData.push({
+										value : result['state']['count_0'],
+										name : '全面性发作持续状态',
+										selected : true
+									});
+					stateData.push({
+										value : result['state']['count_1'],
+										name : '部分性发作持续状态',
+									});
+									
+					state_0_statusData.push({
+												value : result['state']['state_0']['state_0_status_0'],
+												name : '强直性发作持续状态'
+											});
+					state_0_statusData.push({
+												value : result['state']['state_0']['state_0_status_1'],
+												name : '阵挛性发作持续状态'
+											});
+					state_0_statusData.push({
+												value : result['state']['state_0']['state_0_status_2'],
+												name : '肌阵挛发作持续状态'
+											});
+					state_0_statusData.push({
+												value : result['state']['state_0']['state_0_status_3'],
+												name : '失神发作持续状态'
+											});
+					state_0_statusData.push({
+												value : result['state']['state_0']['state_0_status_4'],
+												name : '全面性强直阵挛发作持续状态'
+											});
+					
+					state_1_statusData.push({value:result['state']['state_1']['state_1_status_0'],name:'单纯部分性运动发作持续状态'});
+					state_1_statusData.push({value:result['state']['state_1']['state_1_status_1'],name:'边缘叶性癫痫状态'});
+					state_1_statusData.push({value:result['state']['state_1']['state_1_status_2'],name:'偏侧抽搐状态伴偏侧轻瘫'});
+					state_1_statusData.push({value:result['state']['state_1']['state_1_status_3'],name:'自动症持续状态'});
+					
+					var option4 = {
+						tooltip : {
+							trigger : 'item',
+							formatter : "{a} <br/>{b}: {c} ({d}%)"
+						},
+						legend : {
+							//图例
+							// show:false,  //是否显示图例
+							orient : 'vertical', //布局方向
+							x : 'left', //图例相对位置
+							data : [ '全面性发作持续状态', '部分性发作持续状态' ] //图例内容
+						},
+						series : [ //内容
+							{
+								name : '发病状态分析', //内容标题
+								type : 'pie', //图标样式
+								selectedMode : 'single', //选中模式：单选
+								radius : [ 0, '30%' ], //饼图大小，[x,y]:x表示内半径，y表示外半径  
+								label : { //标签
+									normal : {
+										position : 'inner' //标签位置：内部
+									}
+								},
+								labelLine : { //提示框
+									normal : {
+										show : false //是否显示
+									}
+								},
+								color : [ '#0A276D', '#1040AF', '#1F5DEA', '#628CF0' ], //颜色
+								name : [ '发作状态占比' ], //内容名称
+								data : stateData,
+							},
+							{
+								name : '发病状态分析',
+								type : 'pie',
+								radius : [ '38%', '55%' ],
+								label : {
+									normal : {
+										formatter : '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+									}
+								},
+								labelLine : {
+									normal : {
+										length : 5,
+									}
+								},
+								name : '全面发作状态占比',
+								type : 'pie',
+								radius : [ '40%', '55%' ],
+								color : [ '#205E3F', '#16DA69', '#484891', '#8CEA00', 'yellow', 'pink' ],
+								label : {
+									normal : {
+										textStyle : {
+											color : '#aaa' //提示框字体颜色
+										}
+									}
+								},
+								data : state_0_statusData,
+							} ],
+						backgroundColor : "#fff", //背景颜色
+					};
+					chart4.setOption(option4);
+	
+					//嵌套饼图联动
+					function eConsole(param) {
+						if (typeof param.seriesIndex != 'undefined') {
+							if (param.type == 'click') { //判断事件类型：点击
+								//写法一：获取饼图散区个数,按照图例获取 
+								var peiLenght = option4.legend.data.length;
+								//写法二：获取饼图散区个数,按照series中data获取
+								//var peiLenght= option.series[0].data.length;
+	
+								for (var i = 0; i < peiLenght; i++) {
+									//seriesIndex==0：选择内环饼图；param.dataIndex==i：散区
+									if (param.seriesIndex == 0 && param.dataIndex == i) {
+										if (i == 0) {
+											var option_1 = chart4.getOption();
+											option_1.series[1].name = '全面发作状态占比';
+											option_1.series[1].color = [ '#205E3F', '#16DA69', '#484891', '#8CEA00', 'yellow', 'pink' ],
+											option_1.series[1].data = state_0_statusData;
+											chart4.setOption(option_1);
+										} else if (i == 1) {
+											var option_2 = chart4.getOption();
+											option_2.series[1].name = '部分发作状态';
+											option_2.series[1].color = [ '#205E3F', '#16DA69', '#484891', '#8CEA00' ],
+											option_2.series[1].data = state_1_statusData;
+											chart4.setOption(option_2);
+										}
+									}
+								}
+							}
+						}
+					}
+					chart4.on("click", eConsole);
+				},
+				error : function(result) {
+					alert("返回数据失败，请刷新页面");
+				}
+			});
+		});
+	
+	</script>
+</body>
+</html>
