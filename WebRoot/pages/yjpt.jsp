@@ -460,8 +460,8 @@
 			//判断当前浏览器是否支持WebSocket
 			if ('WebSocket' in window) {
 				//利用username判断websocket连接对象
-				websocket = new WebSocket("ws://[2001:da8:270:2019::e8]:8080/OnlineMedical/ws/dreal?uid=<%=user.getUid()%>");
-				//websocket = new WebSocket("ws://localhost:8080/OnlineMedical/ws/dreal?uid=<%=user.getUid()%>");
+				//websocket = new WebSocket("ws://[]:8080/OnlineMedical/ws/dreal?uid=<%=user.getUid()%>");
+				websocket = new WebSocket("ws://localhost:8080/OnlineMedical/ws/dreal?uid=<%=user.getUid()%>");
 				//websocket = new WebSocket("ws://10.150.170.228:8080/OnlineMedical/ws/dreal?uid=<%=user.getUid()%>");
 			} else {
 				alert('浏览器不支持WebSocket');
